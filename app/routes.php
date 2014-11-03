@@ -11,18 +11,22 @@
 |
 */
 
-Route::get('/trigger-error',function() {
+// Route::get('/trigger-error',function() {
 
-    # Class Foobar should not exist, so this should create an error
-    $foo = new Foobar;
+//     # Class Foobar should not exist, so this should create an error
+//     $foo = new Foobar;
 
-});
+// });
 
-Route::get('/get-environment',function() {
+// Route::get('/get-environment',function() {
 
-    echo "Environment: ".App::environment();
+//     echo "Environment: ".App::environment();
 
-});
+// });
+//
+
+// include Pre lib
+
 
 Route::get('/', function()
 {
@@ -30,4 +34,33 @@ Route::get('/', function()
 });
 
 
+Route::get('mysql-test', function() {
 
+    # Print environment
+    echo 'Environment: '.App::environment().'<br>';
+
+
+    # Use the DB component to select all the databases
+    $results = DB::select('SHOW DATABASES;');
+
+    # If the "Pre" package is not installed, you should output using print_r instead
+    echo Pre::render($results);
+
+});
+
+
+
+# Returns and object of books
+// $books = DB::table('books')->get();
+
+// foreach ($books as $book) {
+//     echo $book->title;
+// }
+
+
+
+// $books = DB::table('books')->where('author', 'LIKE', '%Scott%')->get();
+
+// foreach($books as $book) {
+//     echo $book->title;
+// }
