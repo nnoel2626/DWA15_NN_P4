@@ -1,0 +1,20 @@
+#nav-search .nav-search-field .nav-input {
+position: absolute;
+top: 0;
+left: 0;
+display: block;
+width: 100%;
+line-height: 15px;
+padding: 6px 11px 6px 0;
+margin: 0;
+border: 0;
+height: 29px;
+font-family: "arial","sans-serif";
+font-size: 15px;
+background: transparent;
+color: #111;
+outline: 0;
+-webkit-appearance: none;
+box-shadow: none;
+text-indent: 8px;
+}

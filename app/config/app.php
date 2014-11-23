@@ -122,9 +122,9 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Barryvdh\Debugbar\ServiceProvider',
-
-	),
-
+		'Dinesh\Barcode\BarcodeServiceProvider',
+		'Illuminate\Html\HtmlServiceProvider'
+),
 	/*
 	|--------------------------------------------------------------------------
 	| Service Provider Manifest
@@ -191,7 +191,8 @@ return array(
 		'View'            => 'Illuminate\Support\Facades\View',
 		'Pre'	          => 'Paste\Pre',
 		'RndStr'          => 'Xi\RandomString\RandomStringGenerator',
-
+		 'DNS1D' => 'Dinesh\Barcode\Facades\DNS1DFacade',
+        	 	'DNS2D' => 'Dinesh\Barcode\Facades\DNS2DFacade',
 	),
 
 );

@@ -2,11 +2,7 @@
 
 class BaseController extends Controller {
 
-	/**
-	 * Setup the layout used by the controller.
-	 *
-	 * @return void
-	 */
+
 	protected function setupLayout()
 	{
 		if ( ! is_null($this->layout))
@@ -14,5 +10,11 @@ class BaseController extends Controller {
 			$this->layout = View::make($this->layout);
 		}
 	}
+
+	//protected function _construct()
+	//{
+		//$this ->beforeFilter('csrf', array(' on' => 'post'));
+
+	//}
 
 }
