@@ -12,6 +12,7 @@ class CreateProjectorsTable extends Migration {
 	 */
 	public function up()
 	{
+
 		Schema::create('projectors', function(Blueprint $table)
 		{
 			$table->increments('id');
@@ -22,6 +23,7 @@ class CreateProjectorsTable extends Migration {
 
 			$table->timestamps();
 		});
+
 	}
 
 

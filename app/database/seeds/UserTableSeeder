@@ -1,0 +1,26 @@
+<?php
+
+class UserTableSeeder extends DatabaseSeeder {
+
+  public function run()
+  {
+
+    DB::table('users')->delete();
+
+      $user = new User;
+
+      $user ->fill ( array(
+
+        'email' => 'name@domain.com',
+        'username' => 'philipbrown',
+        'name'        => 'Philip Brown'
+        'created_at' =>'new DateTime'
+        'updated_at' => 'new DateTime'
+      ));
+
+        $user->password = Hash::make('user')
+
+        $user->save();
+    }
+
+}

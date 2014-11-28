@@ -1,19 +1,13 @@
 <?php
 
-class ProjectorsTableSeeder extends Seeder {
+class ProjectorTableSeeder extends Seeder {
 
 	Public function run( ) {
 
-                 /**
-                 * Run the database seeds.
-                 *
-                 * @return void
-                 */
-                //clean up users table
 
+                DB::table('projectors')->delete();
 
-
-              $Projectors =array(
+              $Projectors = array(
                 array(
                      'brand'                	 =>'Sanyo',
                          'model'               	=> 'WTC_500',

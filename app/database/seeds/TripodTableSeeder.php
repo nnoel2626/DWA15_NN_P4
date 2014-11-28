@@ -1,11 +1,11 @@
 <?php
 
-class TripodsTableSeeder extends Seeder {
+class TripodTableSeeder extends Seeder {
 
 	Public function run( ) {
 
 
-
+                    DB::table('tripods')->delete();
 
                      $Tripods =   array(
                        array(

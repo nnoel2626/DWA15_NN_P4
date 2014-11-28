@@ -12,6 +12,7 @@ class CreateMicrophonesTable extends Migration {
 	 */
 	public function up()
 	{
+
 		Schema::create('microphones', function(Blueprint $table)
 		{
 			$table->increments('id');
@@ -21,6 +22,7 @@ class CreateMicrophonesTable extends Migration {
 
 			$table->timestamps();
 		});
+
 	}
 
 

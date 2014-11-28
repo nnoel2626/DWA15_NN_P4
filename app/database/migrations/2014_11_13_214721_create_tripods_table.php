@@ -12,6 +12,7 @@ class CreateTripodsTable extends Migration {
 	 */
 	public function up()
 	{
+
 		Schema::create('tripods', function(Blueprint $table)
 		{
 			$table->increments('id');
@@ -21,6 +22,7 @@ class CreateTripodsTable extends Migration {
 
 			$table->timestamps();
 		});
+
 	}
 
 

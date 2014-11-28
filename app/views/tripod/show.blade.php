@@ -11,5 +11,5 @@
 
 @section('content')
 
-              Show a single photo
+              Show a single Tripod
 @stop

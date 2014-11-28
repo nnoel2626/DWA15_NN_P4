@@ -1,1 +1,15 @@
-C:\xampp\htdocs\dwa15_p4\app/views/projectors/show.blade.php
+@extends('layout.main')
+
+            @section('title')
+            Show Tripod
+            @stop
+
+            @section('head')
+
+            @stop
+
+
+@section('content')
+
+              Show a single Tripod
+@stop

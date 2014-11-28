@@ -1,0 +1,60 @@
+#footnavigation {
+    line-height: 29px;
+}
+#nav, #footnav {
+    background: url("images/back_menu.png") repeat-x scroll left top #cdcdcd;
+    display: block;
+    margin: 0 2px;
+}
+#nav li, #footnav li {
+    border-left: 1px solid #e9e9e9;
+    border-right: 1px solid #bbb;
+    display: inline;
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 0 12px;
+}
+#nav li li {
+    border-left: 1px solid #222;
+    border-right: 1px solid #222;
+    line-height: 22px;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+#nav li.home, #footnav li.home {
+    border-left: 0 none;
+    padding-left: 0;
+}
+#nav li.home img, #footnav li.home img {
+    display: inline;
+    float: left;
+    padding: 8px 0 7px;
+}
+#nav li.cleaner, #footnav li.cleaner {
+    border-right: medium none;
+    display: inline-block;
+    float: none;
+}
+#nav a, #footnav a {
+    color: #777;
+    text-decoration: none;
+    text-shadow: 1px 1px 0 #eee;
+}
+#nav a:hover, #footnav a:hover {
+    color: #333;
+}
+#nav li li a {
+    color: #aaa;
+    text-shadow: none;
+}
+#nav li li a:hover {
+    color: #fff;
+}
+#footnavigation {
+    border-bottom: medium none;
+}
+#footnav li {
+    font-size: 10px;
+    font-weight: normal;
+    text-transform: uppercas

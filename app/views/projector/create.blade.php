@@ -1,25 +1,33 @@
-@extends('layout')
+@extends('layout.main')
+
+@section('title')
+    Add a new Projector
+@stop
+
 
 @section('content')
-    <div class="page-header">
-        <h1>Add Equipment <small>and someday finish it!</small></h1>
-    </div>
 
-    <form action="{{ action('EquipmentController@handleAdd') }}" method="post" role="form">
-        <div class="form-group">
-            <label for="title">Title</label>
-            <input type="text" class="form-control" name="title" />
-        </div>
-        <div class="form-group">
-            <label for="publisher">Publisher</label>
-            <input type="text" class="form-control" name="publisher" />
-        </div>
-        <div class="checkbox">
-            <label for="complete">
-                <input type="checkbox" name="complete" /> Complete?
-            </label>
-        </div>
-        <input type="submit" value="Create" class="btn btn-primary" />
-        <a href="{{ action('GamesController@index') }}" class="btn btn-link">Cancel</a>
-    </form>
+       {{ Form::open ( array ('url' => '/projector.store')) }}
+
+                    <div class="form-group"> {{ Form::label('brand', 'Brand') }}
+                    {{ Form::text('brand'); }} </div>
+
+                    <div class="form-group">{{ Form::label('model','Model') }}
+                     {{ Form::text('model'); }} </div>
+
+                    <div class="form-group"> {{ Form::label('serial_number','Serial_number') }}
+                    {{ Form::text('serial_number'); }} </div>
+
+                    <div class="btn btn-primary" >
+                    {{ Form::submit('create'); }}</div>
+
+                    <div class="btn btn-link" >
+                    <a href="{{ action ('ProjectorController@index') }}" class="btn btn-link">Cancel</a>
+                    </div>
+
+         {{ Form::close() }}
+
+
+
+
 @stop

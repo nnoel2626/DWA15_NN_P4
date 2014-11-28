@@ -2,112 +2,98 @@
 
 class ProjectorController extends \BaseController {
 
-	/**
-	 * Display a listing of the resource.
-	 * GET /projectors
-	 *
-	 * @return Response
-	 */
+//-------------------- Display a listing of  resources. ---------//
+
 	public function index()
 	{
-		$projectors = projector::all();
+	   $projectors = projector::all();
 
-		//return 'all projector';
-	return View::make('/projector.index', compact('projectors'));
+	return View::make('/projector/index') ->with('projectors', $projectors);
+
+            ////return 'hello projector';
 	}
-
-	/**
-	 * Show the form for creating a new resource.
-	 * GET /projectors/create
-	 *
-	 * @return Response
-	 */
+ //-----------------------------To create a  Resource--------------------------------///
 	public function create()
 	{
+
 	return View::make('projector.create');
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 * POST /projectors
-	 *
-	 * @return Response
-	 */
+
 	public function store()
 	{
-		 // Handle create form submission.
-        $projector = new Projector;
-        $projector->name       	= Input::get('name');
-        $projector->model    		= Input::get('model');
-        $projectorod->path    		= Input::get('path');
-        $projector->serial_number  = Input::get('serial_number');
-        $projector->save();
-        return Redirect::action('ProjectorController@index');
+	 // Handle create form submission.
+                $projector = new Projector;
+                $projector->fill(Input::all());
+                $projector->save();
+
+                return Redirect::action('ProjectorController@index')
+                ->with('flash_message', 'Your projector has been added.');
 	}
 
-	/**
-	 * Display the specified resource.
-	 * GET /projectors/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
+//-----------------------------To Show a  Resource--------------------------------///
+
+	public function show (Projector $projector)
 	{
-		return "showing with id of $id";
+	  try {
+                       $projector = Projector::findOrFail($id);
+                       }
+                        catch(Exception $e)
+                        {
+                        return Redirect::to('/projector.show')->with('flash_message', 'Projector not found');
+                         }
+
+                return View::make('/projector.show')
+                ->where('tripod', '$tripod');
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 * GET /projectors/{id}/edit
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
+
+      //-----------------------------To Edit  a Resource--------------------------------///
+	public function edit(Projector $projector)
 	{
-		 return View::make('projector.edit', compact('projector'));
+	return View::make('/projector.edit', compact('projector'));
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 * PUT /projectors/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
+
+	public function handleEdit($projector)
+	{ // Handle edit form submission.
+                    try   {
+                            $projector = Projector::findOrFail(Input::get('id'));
+                            }
+                    catch(Exception $e)
+                            {
+                     return Redirect::to('/projector.edit')->with('flash_message', 'Projector not found');
+                            }
+
+                    $projector->name        = Input::get('name');
+                    $projector->save();
+
+                return Redirect::action('ProjectorController@index');
+	   }
+ //-----------------------------To ddestroy a  Resource--------------------------------///
+
+	public function delete(Projector $projector)
 	{
-	 // Handle edit form submission.
-        $projector = Projector::findOrFail(Input::get('id'));
-        $projector->name        = Input::get('name');
-        $projector->model     = Input::get('model');
-        $projector->path     = Input::get('path');
-        $projector->serial_number  = Input::get('serial_number');
-        $projector->save();
-
-        return Redirect::action('ProjectorController@index');
+	 // Show delete confirmation page.
+             return View::make('projector.delete', compact('projector'));
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 * DELETE /projectors/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		 // Show delete confirmation page.
-        return View::make('projector.delete', compact('projector'));
-	}
-	public function handleDelete()
-    {
-        // Handle the delete confirmation.
-        $id = Input::get('projector');
-        $projector = Projector::findOrFail($id);
-        $projector->delete();
 
-        return Redirect::action('ProjectorController@index');
-    }
+	public function handleDelete( )
+            {       // Handle the delete confirmation.
+
+                try {
+                            $projector = Projector::findOrFail($id);
+                    }
+                    catch(Exception $e) {
+
+                    return Redirect::to('/projector.index')->with('flash_message', 'Projector not found');
+                        }
+
+                $projector::handleDelete($id);
+
+
+                return Redirect::action('ProjectorController@index')
+                ->with('flash_message', 'Your projector has been removed from the datasabe');
+             }
 }

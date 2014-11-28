@@ -31,7 +31,7 @@
                         <td>
                             <a href="{{ action('TripodController@show', $tripod->id) }}" class="btn btn-default">Show</a>
                         <a href="{{ action('TripodController@edit', $tripod->id) }}"  class="btn btn-default">Edit</a>
-                        <a href="{{ action('TripodController@destroy', $tripod->id) }}" class="btn btn-danger">Delete</a>
+                        <a href="{{ action('TripodController@delete', $tripod->id) }}" class="btn btn-danger">Delete</a>
                          </td>
                 </tr>
                 @endforeach

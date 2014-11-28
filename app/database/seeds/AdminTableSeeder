@@ -1,0 +1,25 @@
+<?php
+
+class AdminTableSeeder extends DatabaseSeeder {
+
+  public function run( ){
+
+    DB::table('admins')->delete();
+
+
+
+      $admin = new Admin;
+
+      $admin ->fill ( array(
+
+        'email' => 'mensah33@gmail.com',
+        'username' => 'mensah',
+        'name'        => 'Norcius Noel'
+        ));
+
+        $admin->password = Hash::make('admin')
+
+        $admin->save();
+  }
+
+}

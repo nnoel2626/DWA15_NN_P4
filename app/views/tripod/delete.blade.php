@@ -8,15 +8,13 @@
 
     <div class="panel panel-default">
         <div class="panel-body">
-            <a href="{{ action('TriposController@create') }}" class="btn btn-primary">Create Game</a>
+            <a href="{{ action('TripodController@create') }}" class="btn btn-primary">Create Game</a>
         </div>
     </div>
-
-   
-To get around this, you'll have to create a mini-form with the DELETE method. Inside the form, you can embed a link that will submit the form (shown here with inline JS for simplicty):
-
-{{ Form::open(['method' => 'DELETE', 'action' => ['TagController@destroy', $tag->id]]) }}
+<h3><small>Are you sure that you want tp destroy this  tripod entry?</small></h1>
+{{ Form::open(['method' => 'DELETE', 'action' => ['TripodController@handleDelete', $tripod->id]]) }}
     <a href='javascript:void(0)' onClick='parentNode.submit();return false;'>Delete</a>
+    <a href="{{ action('TripodController@index') }}" class="btn btn-link">Cancel</a>
 {{ Form::close() }}
 
 @stop

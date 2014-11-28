@@ -2,10 +2,15 @@
 
 class AccountController extends BaseController {
 
-    public function getSignIn() {
-        return View::make('account.signin');
+    public function getSignIn()
+    {
+
+    return View::make('account.signin');
+
     }
-    public function postSignIn() {
+
+    public function postSignIn()
+     {
 
         $validator = Validator::make(Input::all(),
             [
@@ -13,6 +18,7 @@ class AccountController extends BaseController {
                 'password'        => 'required'
             ]
         );
+
         if($validator->fails()){
             return Redirect::route('account-sign-in')
                 ->withErrors($validator)
@@ -44,9 +50,6 @@ class AccountController extends BaseController {
             ->with('global','There was a problem signing you in.');
     }
 
-
-
-
     public function getSignOut() {
         Auth::logout();
         return Redirect::route('home');
@@ -57,16 +60,16 @@ class AccountController extends BaseController {
     }
 
     public function postCreate() {
-//        print_r(Input::all());
+       print_r(Input::all());
 
         $validator = Validator::make(Input::all(),
-            [
-                'email'           => 'required|max:50|email|unique:users',
+            array(
+                'email'           => 'required|max:60|email|unique:users',
                 'username'        => 'required|max:20|min:3|unique:users',
                 'password'        => 'required|max:60|min:6',
-                'password_again'  => 'required|max:60|same:password'
-            ]
-        );
+                'password_again'  => 'required|max:60|same:password')
+
+              );
 
         if($validator->fails()){
             return Redirect::route('account-create')
@@ -76,11 +79,11 @@ class AccountController extends BaseController {
         else {
 
             //create account
-            $email     =  Input::get('email');
-            $username  =  Input::get('username');
-            $password  =  Input::get('password');
+            $email            =  Input::get('email');
+            $username   =  Input::get('username');
+            $password    =  Input::get('password');
             //Activation code
-            $code      =  str_random(60);
+            $code           =  str_random(60);
 
             $user = User::create(
                 [
@@ -96,11 +99,10 @@ class AccountController extends BaseController {
             if($user) {
 
                 //Send email
-                Mail::send('emails.auth.activate',
-                    [
+                Mail::send('emails.auth.activate', array(
                         'link'=>URL::route('account-activate', $code),
-                        'username'=>$username
-                    ],
+                        'username'=>$username),
+
                     function($message) use ($user) {
                         $message->to($user->email, $user->username)->subject('Activate your account');
                     }
@@ -111,7 +113,7 @@ class AccountController extends BaseController {
                     ->with('global', 'Your account has been created! We have sent you an email to activate your account');
             }
         }
-    }
+     }
 
 
 
@@ -138,11 +140,11 @@ class AccountController extends BaseController {
 
         return Redirect::route('home')
             ->with('global', 'We could not activate your account. Please try again later.');
-    }
+         }
 
     public function getChangePassword() {
         return View::make('account.password');
-    }
+         }
 
     public function postChangePassword() {
         $validator = Validator::make(Input::all(),
@@ -195,7 +197,11 @@ class AccountController extends BaseController {
         //redirect if generic error
         return Redirect::route('account-change-password')
             ->with('global','Your password could not be changed.');
-    }
+        }
+
+
+
+
 
 
     public function getForgotPassword() {
@@ -274,4 +280,6 @@ class AccountController extends BaseController {
         return Redirect::route('home')
                 ->with('global','Could not recover your account.');
     }
-}
+
+
+ }
