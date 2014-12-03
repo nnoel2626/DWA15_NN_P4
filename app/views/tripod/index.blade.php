@@ -24,7 +24,7 @@
             <tbody>
                 @foreach($tripods as $tripod)
                          <tr>
-                        <td>{{ $tripod->Brand }}</td>
+                        <td>{{ $tripod->brand }}</td>
                         <td>{{ $tripod->model }}</td>
                         <td>{{ $tripod->serial_number }}</td>
 

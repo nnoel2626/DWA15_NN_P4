@@ -2,11 +2,10 @@
 
 class AdminTableSeeder extends DatabaseSeeder {
 
-  public function run( ){
+  public function run( )
+  {
 
     DB::table('admins')->delete();
-
-
 
       $admin = new Admin;
 

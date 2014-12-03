@@ -10,7 +10,8 @@ class EquipmentController extends \BaseController {
 	public function index()
 	{	// Show a listing of Equipment.
         		$equipment = Equipment::all();
-        		return View::make('/equipments.index', compact('equipments'));
+        		return View::make('/equipments.index')
+        		->with('equipments', $equipments);
 	}
 	/**
 	 *Show the form for creating a new resource.

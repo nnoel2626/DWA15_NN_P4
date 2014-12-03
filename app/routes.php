@@ -247,7 +247,7 @@
                 // Show pages.
                 Route::get('/laptop/index', 'LaptopController@index');
                 Route::get('/laptop/create', 'LaptopControllerontroller@create');
-                Route::get('/laptop/show/{tripod}', 'LaptopController@show');
+                Route::get('/laptop/show/{id}', 'LaptopController@show');
                 Route::get('/laptop/edit/{$id}', 'LaptopController@edit');
                 Route::get('/laptop/delete/{$id}', 'LaptopController@delete');
 
@@ -277,17 +277,19 @@
 
     //-----------Route all reources  for Tripod--------------//
 
-               Route::model('tripod', 'Tripod');
+                Route::model('tripod', 'Tripod');  //model binding//
+
+
 
                 // Show pages.
                 Route::get('/tripod/index', 'TripodController@index');
                 Route::get('/tripod/create', 'TripodController@create');
-                Route::get('/tripod/show/{tripod}', 'TripodController@show');
-                Route::get('/tripod/edit/{tripod}', 'TripodController@edit');
-                Route::get('/tripod/delete/{tripod}', 'TripodController@delete');
+                Route::get('/tripod/show/{id}', 'TripodController@show');
+                Route::get('/tripod/edit/{id}', 'TripodController@edit');
+                Route::get('/tripod/delete/{id}', 'TripodController@delete');
 
                 // Handle form submissions.
-                Route::post('/tripod/create', 'TripodController@store');
+                Route::post('/tripod/create', 'TripodController@postCreate');
                 Route::post('/tripod/edit', 'TripodController@handleEdit');
                 Route::post('/tripod/delete', 'TripodController@handleDelete');
 

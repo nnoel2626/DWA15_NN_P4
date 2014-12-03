@@ -2,6 +2,16 @@
 
 class BaseController extends Controller {
 
+	 public function __construct() {
+	   //parent::__construct();
+
+         	 }
+
+	protected function _construct()
+	{
+		$this ->beforeFilter('csrf', array(' on' => 'post'));
+
+	}
 
 	protected function setupLayout()
 	{
@@ -11,10 +21,6 @@ class BaseController extends Controller {
 		}
 	}
 
-	//protected function _construct()
-	//{
-		//$this ->beforeFilter('csrf', array(' on' => 'post'));
 
-	//}
 
 }

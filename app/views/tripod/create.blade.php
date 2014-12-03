@@ -6,28 +6,33 @@
 
 
 @section('content')
+        <div class="page-header">
+                <h1>Add a new Tripod to library </h1>
+        </div>
 
-       {{ Form::open ( array ('url' => '/tripod.store')) }}
+        <form action="{{ action ('TripodController@postCreate') }}" method="post" role="form">
 
-                    <div class="form-group"> {{ Form::label('brand', 'Brand') }}
-                    {{ Form::text('brand'); }} </div>
+        <div class="form-group">
+            <label for="brand">Brand</label>
+            <input type="text" class="form-control" name="brand" />
+        </div>
 
-                    <div class="form-group">{{ Form::label('model','Model') }}
-                     {{ Form::text('model'); }} </div>
+        <div class="form-group">
+            <label for="model">Model</label>
+            <input type="text" class="form-control" name="model" />
+        </div>
 
-                    <div class="form-group"> {{ Form::label('serial_number','Serial_number') }}
-                    {{ Form::text('serial_number'); }} </div>
-
-                    <div class="btn btn-primary" >
-                    {{ Form::submit('create'); }}</div>
-
-                    <div class="btn btn-link" >
-                    <a href="{{ action ('TripodController@index') }}" class="btn btn-link">Cancel</a>
-                    </div>
-
-         {{ Form::close() }}
-
-
+            <div class="form-group">
+            <label for="serial_number">Serial Number</label>
+            <input type="text" class="form-control" name="serial_number" />
+        </div>
 
 
+        </div>
+        <input type="submit" value="Create" class="btn btn-primary" />
+
+        <a href="{{ action('TripodController@index') }}" class="btn btn-link">Cancel</a>
+
+    </form>
 @stop
+
