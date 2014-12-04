@@ -1,14 +1,15 @@
 <?php
 
-class TripodController extends \BaseController {
-     public function __construct()
-    {
+class TripodController extends BaseController {
+
         # Make sure BaseController construct gets called
         //parent::__construct();
         # Only logged in users should have access to this controller
         //$this->beforeFilter('auth');
-    }
-
+    //}
+        public function missingMethod($parameters = array()) {
+        return 'Method "'.$parameters[0].'" not found';
+        }
 	////////////--------- Display a listing of  resources. ---------///
 	public function index()
 	{	//return 'all Tripods';
@@ -72,74 +73,63 @@ class TripodController extends \BaseController {
 
 
   //-----------------------------To Edit  Resources--------------------------------///
-///-----------Update the specified resource in storage.--------------
-	public function edit($id)
-	{
-          try {
-          $tripod = Tripod::findOrFail($id);
-                }
-      catch(Exception $e) {
-      return Redirect::to('/tripod.edit')->with('flash_message', 'Tripod not found');
-      }
 
-      return View::make('/tripod.edit')->with('tripod',$tripod);
+	public function edit (Tripod $tripod)
+	{        //return 'formview';
+
+      return View::make('/tripod.edit', compact('tripod'));
 	}
 
 
 	 public function handleEdit()
 	 {// Handle edit form submission.
+
           $tripod = Tripod::findOrFail(Input::get('id'));
 
-          // $validation = Tripod::validate(input::all());
-          // if ($validation ->fails()){
-          //   return redirect::to_route('/tripod.edit',$id)
-          // ->with_errors($validation);
-          // }else{
+          //$validation = Tripod::validate(Input::get('id'));
+          if ($validation ->fails()){
+            return redirect::to_route('/tripod.edit',$id)
+          ->with_errors($validation);
+           }else{
 
-            Tripod::update($id, array(
-            $tripod->brand               = Input::get('brand'),
-            $tripod->model               = Input::get('model'),
-            $tripod->serial_number   = Input::get('serial_number')
-             ));
 
-             $tripod->save();
+              $tripod->brand               = Input::get('brand');
+              $tripod->model              = Input::get('model');
+              $tripod->serial_number = Input::get('serial_number');
+              $tripod->save();
+
 
               return Redirect::action('TripodController@index')
                ->with ('message', 'Tripod has been updated');
-          //}
 
-      }
+          }
 
  //-----------------------------To ddestroy  Resources--------------------------------///
 
-                public function delete($id)
+                public function delete(Tripod $tripod)
                 {
-                try {
-                $tripod = Tripod::findOrFail($id);
-                }
-                catch(Exception $e) {
-                return Redirect::to('/tripod.delete')->with('flash_message', 'Tripod not found');
+                // try {
+                // $tripod = Tripod::findOrFail($id);
+                //    }
+                // catch(Exception $e) {
+                // return Redirect::to('/tripod.delete')->with('flash_message', 'Tripod not found');
+                // }
+
+                return View::make('/tripod.delete', compact('tripod'));
                 }
 
-                return View::make('/tripod.delete')->with('tripod',$tripod);
-                }
-                   //return ' Tripod to delete';
 
 
                 public function handleDelete ( )
                  {  // Handle the delete confirmation.
 
-                    try {
-                            $tripods = Tripod::findOrFail($tripod);
-                        }
-                        catch(Exception $e) {
 
-                                 return Redirect::to('/tripod.delete')->with('flash_message', 'Tripod not found');
-                        }
+                    $id = Input::get('tripod');
+                    $tripod = Tripod::findOrFail($id);
+                    $tripod->delete();
 
-                        $tripod::handleDelete();
-                          return Redirect::action('TripodController@index')
-                          ->with ('flash_message', 'Your tripod has been removed from database');
-               }
+                    return Redirect::action('TripodController@index')
+                    ->with ('flash_message', 'Your tripod has been removed from database');
+             }
 
 }

@@ -1,6 +1,6 @@
 @extends('layout.main')
 @section('title')
-    Edit Tripod
+    Edit Tripods
 @stop
 
 @section('content')

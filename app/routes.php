@@ -285,8 +285,8 @@
                 Route::get('/tripod/index', 'TripodController@index');
                 Route::get('/tripod/create', 'TripodController@create');
                 Route::get('/tripod/show/{id}', 'TripodController@show');
-                Route::get('/tripod/edit/{id}', 'TripodController@edit');
-                Route::get('/tripod/delete/{id}', 'TripodController@delete');
+                Route::get('/tripod/edit/{tripod}', 'TripodController@edit');
+                Route::get('/tripod/delete/{tripod}', 'TripodController@delete');
 
                 // Handle form submissions.
                 Route::post('/tripod/create', 'TripodController@postCreate');

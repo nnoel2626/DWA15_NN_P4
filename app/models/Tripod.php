@@ -1,11 +1,15 @@
 <?php
 
-class Tripod extends \Eloquent {
-          protected $guarded = array('brand', 'model','serial_number');
+class Tripod extends Eloquent {
 
-        //protected $table = 'tripods';
+            protected $fillable = array();
 
-        //     public function add() {
+            public function tripods() {
+            # Tags belong to many Books
+            return $this->belongsToMany('User');
+            }
+
+        //     public function add( ) {
         // // Add your validation rules here//
         //     static $rules =
         //     [
@@ -23,23 +27,25 @@ class Tripod extends \Eloquent {
 
         //     }
 
-            public static function getIdNamePair() {
-            $tripods = Array();
-            $collection = tripods::all();
-            foreach($collection as $tripod) {
-            $tripods[$tripod->id] = $tripod->name;
-            }
-            return $tripods;
-            }
 
-            public static function boot() {
-            parent::boot();
-            static::deleting(function($tripod){
-            DB::statement('DELETE FROM tripod
-             WHERE tripod_id = ?', array($tripod->id));
-            });
 
-             }
+            // public static function getIdNamePair() {
+            // $tripods = Array();
+            // $collection = tripods::all();
+            // foreach($collection as $tripod) {
+            // $tripods[$tripod->id] = $tripod->name;
+            // }
+            // return $tripods;
+            // }
+
+            // public static function boot() {
+            // parent::boot();
+            // static::deleting(function($id){
+            // DB::statement('DELETE FROM tripods
+            //  WHERE tripod_id = ?', array($tripod->id));
+            // });
+
+             //}
 
 
 }

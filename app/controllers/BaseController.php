@@ -2,16 +2,12 @@
 
 class BaseController extends Controller {
 
-	 public function __construct() {
-	   //parent::__construct();
 
-         	 }
+	//protected function _construct()
+	//{
+		//$this ->beforeFilter('csrf', array(' on' => 'post'));
 
-	protected function _construct()
-	{
-		$this ->beforeFilter('csrf', array(' on' => 'post'));
-
-	}
+	//}
 
 	protected function setupLayout()
 	{
@@ -21,6 +17,12 @@ class BaseController extends Controller {
 		}
 	}
 
+///---Special method that gets triggered if the user enters a URL for a method that does not exist///
+
+
+	public function missingMethod($parameters = array()) {
+		return 'Method "'.$parameters[0].'" not found';
+	}
 
 
 }
