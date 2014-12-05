@@ -16,11 +16,13 @@ class CreateProjectorsTable extends Migration {
 		Schema::create('projectors', function(Blueprint $table)
 		{
 			$table->increments('id');
+			$table->string('caption');
+			$table->string('path');
+			$table->string('name');
 			$table->string('brand');
 			$table->string('model');
-			$table->string('serial_number');
-
-
+			$table->integer('serial_number');
+			$table->boolean('confirmed');
 			$table->timestamps();
 		});
 

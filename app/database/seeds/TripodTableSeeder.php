@@ -1,30 +1,25 @@
 <?php
 
-class TripodTableSeeder extends Seeder {
+class TripodTableSeeder extends DatabaseSeeder {
 
-	Public function run( ) {
+    public function run( )
+    {
+    # Clear the tables to a blank slate
+    # Disable FK constraints so that all rows can be deleted, even if there's an associated FK
+    DB::statement('SET FOREIGN_KEY_CHECKS=0');
+    DB::statement('TRUNCATE tripods');
+
+    # Authors
+    $tripod = new Tripod;
+    $tripod->caption = 'Tripod_image';
+    $tripod->path = '/images/tripod.jpg';
+    $tripod->brand = 'Manfrotto';
+    $tripod->name = 'Tripod_1';
+    $tripod->model = 'T-25';
+    $tripod->serial_number = '1255456';
+    $tripod->save();
 
 
-                    DB::table('tripods')->delete();
-
-                     $Tripods =   array(
-                       array(
-                       'brand'                    =>'Manfrotto',
-                         'model'                    => 'SM58',
-                        'serial_number'          => '1234',
-                        'created_at'                => 'new DateTime',
-                        'updated_at'              => 'new DateTime'  ),
-
-
-                          array(
-                      'brand'                 =>'Manfrotto',
-                        'model'                 => 'L185',
-                        'serial_number'     => '5678',
-                         'created_at'          => 'new DateTime',
-                        'updated_at'          => 'new DateTime'
-                     ));
-
-                    	   DB::table ('Tripods') ->insert($Tripods);
-                     }
+  }
 
 }

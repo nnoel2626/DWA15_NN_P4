@@ -1,30 +1,40 @@
 <?php
 
-class MicrophoneTableSeeder extends Seeder {
+class MicrophoneTableSeeder extends DatabaseSeeder {
 
-	Public function run( ) {
+	 /**
+   * Run the database seeds.
+   *
+   * @return void
+   */
+    public function run()
+    {
+    # Clear the tables to a blank slate
+    # Disable FK constraints so that all rows can be deleted, even if there's an associated FK
+    DB::statement('SET FOREIGN_KEY_CHECKS=0');
+    DB::statement('TRUNCATE microphones');
 
-                 DB::table('microphones')->delete();
+    # Authors
+    $microphone = new Microphone;
+    $microphone->caption = 'Microphone_image1';
+    $microphone->path = '/images/microphone.jpg';
+    $microphone->brand = 'shure';
+    $microphone->name = 'Hand Held Mic';
+    $microphone->model = 'L-185';
+    $microphone->serial_number = '123456';
 
-                     $Microphones = array(
-                        array(
+    $microphone->save();
 
-                       'brand'                	     =>'Shure',
-                         'model'                   => 'SM58',
-                        'serial_number'        => '1234',
-                        'created_at'              => 'new DateTime',
-                        'updated_at'              => 'new DateTime'
-                         ),
+    $microphone = new Microphone;
+    $microphone->caption = 'Microphone_image2';
+    $microphone->path = '/images/microphone.jpg';
+    $microphone->brand = 'shure';
+    $microphone->name = 'Hand Held Mic2';
+    $microphone->model = 'L-185';
+    $microphone->serial_number = '123789';
 
-                        array(
-                          'brand'                 =>'Shure',
-                        'model'                 => 'L185',
-                        'serial_number'     => '5678',
-                         'created_at'          => 'new DateTime',
-                        'updated_at'          => 'new DateTime'
-                    ));
+    $microphone->save();
 
-                     DB::table ('Microphones') ->insert($Microphones);
-             }
+  }
 
 }

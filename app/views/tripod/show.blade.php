@@ -32,21 +32,6 @@
 
 
 
-    <td>{{ $tripod->brand }}</td>
-
-    <td>{{ $tripod->model }}</td>
-
-    <td>{{ $tripod->serial_number }}</td>
-
-    <td>{{ $tripod->created_at }}</td>
-
-    <td>{{ $tripod->updated_at }}</td>
-
-
-@stop
-
-
-
 
 
 

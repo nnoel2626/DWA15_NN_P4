@@ -3,7 +3,7 @@
 @section('content')
 
         <div class="page-header">
-        <h1>All Projectors <small>Gotta catch 'em all!</small></h1>
+        <h1>All Projectors </h1>
         </div>
             <div class="panel panel-default">
                 <div class="panel-body">

@@ -170,14 +170,14 @@
                 // Show pages.
                 Route::get('/audiorecorder/index', 'AudiorecorderController@index');
                 Route::get('/audiorecorder/create', 'AudiorecorderController@create');
-                Route::get('/audiorecorder/show/{tripod}', 'AudiorecorderController@show');
-                Route::get('/audiorecorder/edit/{$id}', 'AudiorecorderController@edit');
-                Route::get('/audiorecorder/delete/{$id}', 'AudiorecorderController@destroy');
+                Route::get('/audiorecorder/show/{id}', 'AudiorecorderController@show');
+                Route::get('/audiorecorder/edit/{audiorecorder}', 'AudiorecorderController@edit');
+                Route::get('/audiorecorder/delete/{audiorecorder}', 'AudiorecorderController@delete');
 
                 // Handle form submissions.
-                Route::post('/audiorecorder/create', 'AudiorecorderController@store');
+                Route::post('/audiorecorder/create', 'AudiorecorderController@postCreate');
                 Route::post('/audiorecorder/edit', 'AudiorecorderController@handleEdit');
-                Route::post('/audiorecorder/delete', 'AudiorecorderController@destroy');
+                Route::post('/audiorecorder/delete', 'AudiorecorderController@handleDelete');
 
     //----------------Route all resource dungles-------------------//
                // Route::model('dungle', 'Dungle');
@@ -185,12 +185,12 @@
                 // Show pages.
                 Route::get('/dungle/index', 'DungleController@index');
                 Route::get('/dungle/create', 'DungleController@create');
-                Route::get('/dungle/show/{tripod}', 'DungleController@show');
-                Route::get('/dungle/edit/{$id}', 'DungleController@edit');
-                Route::get('/dungle/delete/{$id}', 'DungleController@delete');
+                Route::get('/dungle/show/{id}', 'DungleController@show');
+                Route::get('/dungle/edit/{dungle}', 'DungleController@edit');
+                Route::get('/dungle/delete/{dungle}', 'DungleController@delete');
 
                 // Handle form submissions.
-                Route::post('/dungle/create', 'DungleController@store');
+                Route::post('/dungle/create', 'DungleController@postCreate');
                 Route::post('/dungle/edit', 'DungleController@handleEdit');
                 Route::post('/dungle/delete', 'DungleController@handleDelete');
 
@@ -200,12 +200,12 @@
                 // Show pages.
                 Route::get('/videocam/index', 'VideocamController@index');
                 Route::get('/videocam/create', 'VideocamController@create');
-                Route::get('/videocam/show/{tripod}', 'VideocamController@show');
-                Route::get('/videocam/edit/{$id}', 'VideocamController@edit');
-                Route::get('/videocam/delete/{$id}', 'VideocamController@delete');
+                Route::get('/videocam/show/{id}', 'VideocamController@show');
+                Route::get('/videocam/edit/{videocam}', 'VideocamController@edit');
+                Route::get('/videocam/delete/{videocam}', 'VideocamController@delete');
 
                 // Handle form submissions.
-                Route::post('/videocam/create', 'VideocamController@store');
+                Route::post('/videocam/create', 'VideocamController@postCreate');
                 Route::post('/videocam/edit', 'VideocamController@handleEdit');
                 Route::post('/videocam/delete', 'VideocamController@handleDelete');
 
@@ -216,28 +216,28 @@
                 // Show pages.
                 Route::get('/mac/index', 'MacController@index');
                 Route::get('/mac/create', 'MacController@create');
-                 Route::get('/mac/show/{tripod}', 'MacController@show');
-                Route::get('/mac/edit/{$id}', 'MacController@edit');
-                Route::get('/mac/delete/{$id}', 'MacController@delete');
+                 Route::get('/mac/show/{id}', 'MacController@show');
+                Route::get('/mac/edit/{mac}', 'MacController@edit');
+                Route::get('/mac/delete/{mac}', 'MacController@delete');
 
                 // Handle form submissions.
-                Route::post('/mac/create', 'MacController@store');
+                Route::post('/mac/create', 'MacController@postCreate');
                 Route::post('/mac/edit', 'MacControllerr@handleEdit');
                 Route::post('/mac/delete', 'MacController@handleDelete');
 
 
     //-----------Route all resource for Microphones----------------//
-              ///  Route::model('microphone', 'Microphone');
+               Route::model('microphone', 'Microphone');
 
                 // Show pages.
                 Route::get('/microphone/index', 'MicrophoneController@index');
                 Route::get('/microphone/create', 'MicrophoneController@create');
-                 Route::get('/microphone/show/{tripod}', 'MicrophonerController@show');
-                Route::get('/microphone/edit/{$id}', 'MicrophoneController@edit');
-                Route::get('/microphone/delete/{$id}', 'MicrophoneController@delete');
+                 Route::get('/microphone/show/{id}', 'MicrophonerController@show');
+                Route::get('/microphone/edit/{microphone}', 'MicrophoneController@edit');
+                Route::get('/microphone/delete/{microphone}', 'MicrophoneController@delete');
 
                 // Handle form submissions.
-                Route::post('/microphone/create', 'MicrophoneController@store');
+                Route::post('/microphone/create', 'MicrophoneController@postCreate');
                 Route::post('/microphone/edit', 'MicrophoneController@handleEdit');
                 Route::post('/microphone/delete', 'MicrophoneController@handleDelete');
 
@@ -248,28 +248,28 @@
                 Route::get('/laptop/index', 'LaptopController@index');
                 Route::get('/laptop/create', 'LaptopControllerontroller@create');
                 Route::get('/laptop/show/{id}', 'LaptopController@show');
-                Route::get('/laptop/edit/{$id}', 'LaptopController@edit');
-                Route::get('/laptop/delete/{$id}', 'LaptopController@delete');
+                Route::get('/laptop/edit/{laptop}', 'LaptopController@edit');
+                Route::get('/laptop/delete/{laptop}', 'LaptopController@delete');
 
                 // Handle form submissions.
-                Route::post('/laptop/create', 'LaptopControllerller@store');
+                Route::post('/laptop/create', 'LaptopControllerller@postCreate');
                 Route::post('/laptop/edit', 'LaptopController@handleEdit');
                 Route::post('/laptop/delete', 'LaptopController@handleDelete');
 
 
     //-----------Route all resources for Projectors----------------//
 
-              //Route::model('projector', 'Projector');
+                Route::model('projector', 'Projector');
 
                 // Show pages.
                 Route::get('/projector/index', 'ProjectorController@index');
                 Route::get('/projector/create', 'ProjectorController@create');
-                Route::get('/projector/show/{projector}', 'ProjectorController@show');
+                Route::get('/projector/show/{id}', 'ProjectorController@show');
                 Route::get('/projector/edit/{projector}', 'ProjectorController@edit');
                 Route::get('/projector/delete/{projector}', 'ProjectorController@delete');
 
                 // Handle form submissions.
-                Route::post('/projector/create', 'ProjectorController@store');
+                Route::post('/projector/create', 'ProjectorController@postCreate');
                 Route::post('/projector/edit', 'ProjectorController@handleEdit');
                 Route::post('/projector/delete', 'ProjectorController@handleDelete');
 
@@ -278,8 +278,6 @@
     //-----------Route all reources  for Tripod--------------//
 
                 Route::model('tripod', 'Tripod');  //model binding//
-
-
 
                 // Show pages.
                 Route::get('/tripod/index', 'TripodController@index');

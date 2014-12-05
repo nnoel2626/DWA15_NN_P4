@@ -48,10 +48,6 @@
    </main>
 
 <footer>
-    <div class="container">
-<div class="nav-search-field">
-        <input type="text" id="" value  name="field-keyword" class="nav-input">
-    </div>
 
         &copy; {{ date('Y') }} AV rental  Web App |
     </div>
