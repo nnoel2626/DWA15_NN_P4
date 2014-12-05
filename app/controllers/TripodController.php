@@ -61,7 +61,8 @@ class TripodController extends BaseController {
                 try {
                 $tripod = Tripod::findOrFail($id);
                 }
-                catch(Exception $e) {
+                catch(Exception $e)
+                {
                 return Redirect::to('/tripod.show')->with('flash_message', 'Tripod not found');
                 }
 
@@ -77,32 +78,30 @@ class TripodController extends BaseController {
 	public function edit (Tripod $tripod)
 	{        //return 'formview';
 
-      return View::make('/tripod.edit', compact('tripod'));
+      return View::make('/tripod.edit', compact('tripod'))
+                            ->with('tripod', $tripod);
 	}
 
-
 	 public function handleEdit()
-	 {// Handle edit form submission.
+	  {// Handle edit form submission.
 
-          $tripod = Tripod::findOrFail(Input::get('id'));
+            // try {
+            //     $tripod = Tripod::findOrFail(Input::get('id'));
 
-          //$validation = Tripod::validate(Input::get('id'));
-          if ($validation ->fails()){
-            return redirect::to_route('/tripod.edit',$id)
-          ->with_errors($validation);
-           }else{
+            //     //var_dump ( Input::get('id') );
 
-
-              $tripod->brand               = Input::get('brand');
-              $tripod->model              = Input::get('model');
-              $tripod->serial_number = Input::get('serial_number');
-              $tripod->save();
-
+            //     }
+            //     catch(Exception $e) {
+            //     return Redirect::to('/tripod.edit')->with('flash_message', 'Tripod not found');
+            //      }
+                 $tripod = Tripod::findOrFail(Input::get('id'));
+                 $tripod->fill(Input::all());
+                 $tripod->save();
 
               return Redirect::action('TripodController@index')
-               ->with ('message', 'Tripod has been updated');
+             ->with ('message', 'Tripod has been updated');
 
-          }
+        }
 
  //-----------------------------To ddestroy  Resources--------------------------------///
 
