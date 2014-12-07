@@ -3,11 +3,11 @@
 class BaseController extends Controller {
 
 
-	//protected function _construct()
-	//{
-		//$this ->beforeFilter('csrf', array(' on' => 'post'));
+	protected function _construct()
+	{
+		$this ->beforeFilter('csrf', array(' on' => 'post'));
 
-	//}
+	}
 
 	protected function setupLayout()
 	{

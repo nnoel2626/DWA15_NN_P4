@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="page-header">
-        <h1>All Microphones</h1>
+               <h1>Delete a microphone from the library</h1>
     </div>
 
     <div class="panel panel-default">
@@ -13,10 +13,13 @@
     </div>
 
 
-To get around this, you'll have to create a mini-form with the DELETE method. Inside the form, you can embed a link that will submit the form (shown here with inline JS for simplicty):
+<h1><small>Are you sure that you want to destroy this microphone entry?</small></h1>
 
-{{ Form::open(['method' => 'DELETE', 'action' => ['MicrophoneController@handleDelete', $microphone->id]]) }}
-    <a href='javascript:void(0)' onClick='parentNode.submit();return false;'>Delete</a>
-{{ Form::close() }}
+<form action="{{ action('MicrophoneController@handleDelete') }}" method="post" role="form">
+        <input type="hidden" name="microphone" value="{{ $microphone->id }}" />
+        <input type="submit" class="btn btn-danger" value="Yes" />
+        <a href="{{ action('MicrophoneController@index') }}" class="btn btn-default">No way!</a>
+    </form>
+
 
 @stop

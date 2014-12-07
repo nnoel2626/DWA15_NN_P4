@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="page-header">
-        <h1>All Projectors<small>Gotta catch 'em all!</small></h1>
+          <h1>Delete a projector from the library</h1>
     </div>
 
     <div class="panel panel-default">
@@ -12,11 +12,11 @@
         </div>
     </div>
 
+<h1><small>Are you sure that you want to destroy this projector entry?</small></h1>
 
-To get around this, you'll have to create a mini-form with the DELETE method. Inside the form, you can embed a link that will submit the form (shown here with inline JS for simplicty):
-
-{{ Form::open(['method' => 'DELETE', 'action' => ['ProjectorController@destroy', $projector->id]]) }}
-    <a href='javascript:void(0)' onClick='parentNode.submit();return false;'>Delete</a>
-{{ Form::close() }}
-
+<form action="{{ action('ProjectorController@handleDelete') }}" method="post" role="form">
+        <input type="hidden" name="projector" value="{{ $projector->id }}" />
+        <input type="submit" class="btn btn-danger" value="Yes" />
+        <a href="{{ action('ProjectorController@index') }}" class="btn btn-default">No way!</a>
+    </form>
 @stop

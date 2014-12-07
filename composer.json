@@ -11,7 +11,9 @@
 		"badcow/lorem-ipsum": "dev-master",
 		"barryvdh/laravel-debugbar": "1.8.*@dev",
 		"dinesh/barcode": "dev-master",
-		"stripe/stripe-php": "dev-master"
+		"stripe/stripe-php": "dev-master",
+		"way/generators": "3"
+
 	},
 
 	"autoload": {

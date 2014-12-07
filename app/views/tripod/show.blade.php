@@ -10,8 +10,7 @@
                     </tr>
                 </thead>
         <tbody>
-              {{---- @foreach($tripod as $tripod)--}}
-                         <tr>
+                    <tr>
                         <td>{{ $tripod->brand }}</td>
                         <td>{{ $tripod->model }}</td>
                         <td>{{ $tripod->serial_number }}</td>
@@ -22,7 +21,7 @@
                         <a href="{{ action('TripodController@delete', $tripod->id) }}" class="btn btn-danger">Delete</a>
                          </td>
                 </tr>
-                {{--@endforeach--}}
+
             </tbody>
         </table>
 

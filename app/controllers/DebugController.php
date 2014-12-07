@@ -3,10 +3,10 @@ class DebugController extends BaseController {
 /**
 *
 */
-public function __construct() {
+//public function __construct() {
 # Make sure BaseController construct gets called
-parent::__construct();
-}
+//parent::__construct();
+//}
 /**
 * Special method that gets triggered if the user enters a URL for a method that does not exist
 *

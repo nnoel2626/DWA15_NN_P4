@@ -1,6 +1,6 @@
 <?php
 
-class Laptop extends \Eloquent {
+class Laptop extends Eloquent {
 
-	protected $fillable = [];
+	protected $fillable = array( 'brand', 'model',  'serial_number', );
 }

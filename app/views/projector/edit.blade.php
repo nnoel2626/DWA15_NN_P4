@@ -4,12 +4,21 @@
 @section('content')
 
  <div class="page-header">
-        <h1>Edit Projector <small>Go on, mark it complete!</small></h1>
+        <h1>Edit Projector </h1>
     </div>
 
     <form action="{{ action('ProjectorController@handleEdit') }}" method="post" role="form">
         <input type="hidden" name="id" value="{{ $projector->id}}">
 
+        <div class="form-group">
+            <label for="caption">Caption</label>
+            <input type="text" class="form-control" name="caption" value="{{ $projector->caption }}" />
+        </div>
+
+        <div class="form-group">
+            <label for="path">Path</label>
+            <input type="text" class="form-control" name="path" value="{{ $projector->path }}" />
+        </div>
         <div class="form-group">
             <label for="brand">Brand</label>
             <input type="text" class="form-control" name="brand" value="{{ $projector->brand }}" />

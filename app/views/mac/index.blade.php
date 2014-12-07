@@ -2,37 +2,37 @@
 
 @section('content')
     <div class="page-header">
-        <h1>All Tripods <small>Gotta catch 'em all!</small></h1>
+        <h1>All Macs </h1>
     </div>
 
     <div class="panel panel-default">
         <div class="panel-body">
-            <a href="{{ action('TripodsController@create') }}" class="btn btn-primary">Add new Tripod</a>
+            <a href="{{ action('MacController@create') }}" class="btn btn-primary">Add new Mac</a>
         </div>
     </div>
 
-    @if ($tripods->isEmpty())
-        <p>There are no Tripods! :(</p>
+    @if ($macs->isEmpty())
+        <p>There are no Macs! :(</p>
     @else
         <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Publisher</th>
-                    <th>Complete</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
+                <thead>
+                    <tr>
+                    <th>Brand</th>
+                    <th>Model</th>
+                    <th>Serial Number</th>
+                    </tr>
+                </thead>
             <tbody>
-                @foreach($tipods as $tripod)
+                @foreach($macs as $mac)
                 <tr>
-                    <td>{{ $tripod->name }}</td>
-                    <td>{{ $tripod->model }}</td>
-                    <td>{{ $tripod->path }}</td>
-                    <td>{{ $tripod->serial_nmber ? 'Yes' : 'No' }}</td>
+                    <td>{{ $mac->name }}</td>
+                    <td>{{ $mac->model }}</td>
+                    <td>{{ $mac->path }}</td>
+                    <td>{{ $mac->serial_nmber}}</td>
                     <td>
-                        <a href="{{ action('TripodsController@edit', $$tripod->id) }}" class="btn btn-default">Edit</a>
-                        <a href="{{ action('TripodsController@delete', $$tripod->id) }}" class="btn btn-danger">Delete</a>
+                        <a href="{{ action('MacController@show', $mac->id) }}" class="btn btn-default">Show</a>
+                        <a href="{{ action('MacController@edit', $mac->id) }}" class="btn btn-default">Edit</a>
+                        <a href="{{ action('MacController@delete', $mac->id) }}" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>
                 @endforeach

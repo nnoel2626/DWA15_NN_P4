@@ -11,7 +11,7 @@
         </div>
     </div>
 
-    @if ($tripods->isEmpty())
+    @if ($microphones->isEmpty())
         <p>There are no Microphones! :(</p>
     @else
         <table class="table table-striped">

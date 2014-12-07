@@ -2,36 +2,37 @@
 
 @section('content')
     <div class="page-header">
-        <h1>All Games <small>Gotta catch 'em all!</small></h1>
+        <h1>All Audiorecorders </h1>
     </div>
 
     <div class="panel panel-default">
         <div class="panel-body">
-            <a href="{{ action('GamesController@create') }}" class="btn btn-primary">Create Game</a>
+            <a href="{{ action('AudiorecorderController@create') }}" class="btn btn-primary">Add new Audiorecorder</a>
         </div>
     </div>
 
-    @if ($games->isEmpty())
-        <p>There are no games! :(</p>
+    @if ($audiorecorder->isEmpty())
+        <p>There are no audiorecorders! :(</p>
     @else
         <table class="table table-striped">
             <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Publisher</th>
-                    <th>Complete</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
+                    <tr>
+                    <th>Brand</th>
+                    <th>Model</th>
+                    <th>Serial Number</th>
+                    </tr>
+                </thead>
             <tbody>
-                @foreach($games as $game)
-                <tr>
-                    <td>{{ $game->title }}</td>
-                    <td>{{ $game->publisher }}</td>
-                    <td>{{ $game->complete ? 'Yes' : 'No' }}</td>
-                    <td>
-                        <a href="{{ action('GamesController@edit', $game->id) }}" class="btn btn-default">Edit</a>
-                        <a href="{{ action('GamesController@delete', $game->id) }}" class="btn btn-danger">Delete</a>
+                @foreach($audiorecorder as $audiorecorder)
+                 <tr>
+                        <td>{{ $audiorecorder->brand }}</td>
+                        <td>{{ $audiorecorder->model }}</td>
+                        <td>{{ $audiorecorder->serial_number }}</td>
+
+                        <td>
+                         <a href="{{ action('AudiorecorderController@show', $audiorecorder->id) }}" class="btn btn-default">Show</a>
+                        <a href="{{ action('AudiorecorderController@edit', $audiorecorder->id) }}" class="btn btn-default">Edit</a>
+                        <a href="{{ action('AudiorecorderController@delete', $audiorecorder->id) }}" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>
                 @endforeach

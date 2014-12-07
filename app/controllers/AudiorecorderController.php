@@ -9,21 +9,16 @@ class AudiorecorderController extends \BaseController {
 	 * @return Response
 	 */
 	  public function index()
-		{
-		$audiorecorders = audiorecorder::all();
+	{
+            	   $audiorecorders = audiorecorder::all();
 
-		return View::make('/audiorecorder.index', compact('audiorecorders'));
-		}
+            	   return View::make('/audiorecorder.index')
+                ->with('audiorecorders', $audiorecorders);
+	}
 
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
 	public function create()
 	{
-		return View::make('audiorecorder.create');
+                return View::make('/audiorecorder.create');
 	}
 
 
@@ -35,13 +30,13 @@ class AudiorecorderController extends \BaseController {
 	public function store()
 	{
 		// Handle create form submission.
-        $audiorecorder = new Audiorecorder;
-        $audiorecorder->name       	= Input::get('name');
-        $audiorecorder->model    		= Input::get('model');
-        $audiorecorder->path    		= Input::get('path');
-        $audiorecorder->serial_number  = Input::get('serial_number');
-        $audiorecorder->save();
-        return Redirect::action('AudiorecorderController@index');
+                $audiorecorder = new Audiorecorder;
+                $audiorecorder->name       	= Input::get('name');
+                $audiorecorder->model    		= Input::get('model');
+                $audiorecorder->path    		= Input::get('path');
+                $audiorecorder->serial_number  = Input::get('serial_number');
+                $audiorecorder->save();
+                return Redirect::action('AudiorecorderController@index');
 	}
 
 
@@ -53,7 +48,18 @@ class AudiorecorderController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		return "showing with id of $id";
+		 try {
+                $audiorecorder = Audiorecorder::findOrFail($id);
+                    }
+                catch(Exception $e)
+                    {
+                return Redirect::to('/audiorecorder.show')
+                ->with('flash_message', 'Audiorecorder not found');
+                    }
+
+                //return var_dump($id) ;
+                return View::make('/audiorecorder.show')
+                ->with('audiorecorder', $audiorecorder);
 	}
 
 
@@ -66,7 +72,7 @@ class AudiorecorderController extends \BaseController {
 	public function edit($id)
 	{
 	 // Show the edit audiorecorder form.
-        return View::make('audiorecorder.edit', compact('audiorecorders'));
+                return View::make('/audiorecorder.edit', compact('audiorecorders'));
 	}
 
 

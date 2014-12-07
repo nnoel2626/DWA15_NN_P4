@@ -2,24 +2,9 @@
 
 //app/routes.php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the Closure to execute when that URI is requested.
-|
-*/
+  ///--------------Debug Route(Implicit Routing)---------///
 
-/**
-* Debug
-* (Implicit Routing)
-*/
         Route::controller('/debug', 'DebugController');
-
-
 
         ///--------------Route to Home page---------///
 
@@ -37,7 +22,7 @@
 
                 Route::group(array('domain' => '{username}.gmail.com'), function()
                 {
-                ///--------------Route to Home page---------///
+                ///-------------------Route to Home page---------///
                     Route::get('/user/{username}', [
                             'as'    =>  'profile-user',
                             'uses'  =>  'ProfileController@user'
@@ -46,7 +31,7 @@
                 });
 
 
-   ///-------Authenticated group
+   ///---------------------------Authenticated group----------------------------------------------//
 
                 Route::group(['before'=>'auth'], function() {
 
@@ -84,10 +69,8 @@
 
                 });
 
-                /*
-                *  Unauthenticated group
-                */
 
+ ///---------------------------Unauthenticated group----------------------------------------------//
                 Route::group(['before'=>'guest'], function() {
 
                 /*
@@ -161,11 +144,12 @@
 
                 });
 
-////--------------------------------equipment routes------------------------////
+//--------------------------------equipment routes------------------------////
+                route::resource('equipment', 'equipmentController');
 
 
     //----------------Route all resource for Audiorecorders----------------//
-              // Route::model('audiorecorder', 'Audiorecorder');
+               Route::model('audiorecorder', 'Audiorecorder');
 
                 // Show pages.
                 Route::get('/audiorecorder/index', 'AudiorecorderController@index');
@@ -180,7 +164,7 @@
                 Route::post('/audiorecorder/delete', 'AudiorecorderController@handleDelete');
 
     //----------------Route all resource dungles-------------------//
-               // Route::model('dungle', 'Dungle');
+                Route::model('dungle', 'Dungle');
 
                 // Show pages.
                 Route::get('/dungle/index', 'DungleController@index');
@@ -195,7 +179,7 @@
                 Route::post('/dungle/delete', 'DungleController@handleDelete');
 
  //------------- Route all resources for HDZooms---------------//
-                //Route::model('videocam', 'Videocam');
+                Route::model('videocam', 'Videocam');
 
                 // Show pages.
                 Route::get('/videocam/index', 'VideocamController@index');
@@ -211,7 +195,7 @@
 
 
        //------------ Route all resources for MACs--------------//
-                //Route::model('mac', 'Mac');
+                Route::model('mac', 'Mac');
 
                 // Show pages.
                 Route::get('/mac/index', 'MacController@index');
@@ -232,7 +216,7 @@
                 // Show pages.
                 Route::get('/microphone/index', 'MicrophoneController@index');
                 Route::get('/microphone/create', 'MicrophoneController@create');
-                 Route::get('/microphone/show/{id}', 'MicrophonerController@show');
+                 Route::get('/microphone/show/{id}', 'MicrophoneController@show');
                 Route::get('/microphone/edit/{microphone}', 'MicrophoneController@edit');
                 Route::get('/microphone/delete/{microphone}', 'MicrophoneController@delete');
 
@@ -242,7 +226,7 @@
                 Route::post('/microphone/delete', 'MicrophoneController@handleDelete');
 
     //-------------- Route all resource for PCs---------------//
-                //Route::model('laptop', 'Laptop');
+                Route::model('laptop', 'Laptop');
 
                 // Show pages.
                 Route::get('/laptop/index', 'LaptopController@index');

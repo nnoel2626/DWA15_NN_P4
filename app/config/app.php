@@ -122,7 +122,9 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Barryvdh\Debugbar\ServiceProvider',
-		'Illuminate\Html\HtmlServiceProvider'
+		'Illuminate\Html\HtmlServiceProvider',
+		'Way\Generators\GeneratorsServiceProvider'
+
 ),
 	/*
 	|--------------------------------------------------------------------------

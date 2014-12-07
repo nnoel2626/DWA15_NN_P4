@@ -3,20 +3,23 @@
 
 @section('content')
     <div class="page-header">
-        <h1>All Tripods<small>Gotta catch 'em all!</small></h1>
+        <h1>Delete an dungle from the library</h1>
     </div>
 
     <div class="panel panel-default">
         <div class="panel-body">
-            <a href="{{ action('TriposController@create') }}" class="btn btn-primary">Create Game</a>
+            <a href="{{ action('DungleController@create') }}" class="btn btn-primary">Create Dungle</a>
         </div>
     </div>
 
-   
-To get around this, you'll have to create a mini-form with the DELETE method. Inside the form, you can embed a link that will submit the form (shown here with inline JS for simplicty):
 
-{{ Form::open(['method' => 'DELETE', 'action' => ['TagController@destroy', $tag->id]]) }}
-    <a href='javascript:void(0)' onClick='parentNode.submit();return false;'>Delete</a>
+ <h1><small>Are you sure that you want to destroy this dungle entry?</small></h1>
+
+<form action="{{ action('DungleController@handleDelete') }}" method="post" role="form">
+        <input type="hidden" name="dungle" value="{{ $dungle>id }}" />
+        <input type="submit" class="btn btn-danger" value="Yes" />
+        <a href="{{ action('DungleController@index') }}" class="btn btn-default">No way!</a>
+    </form>
 {{ Form::close() }}
 
 @stop

@@ -17,6 +17,8 @@
         <table class="table table-striped">
                 <thead>
                     <tr>
+                    <th>Caption</th>
+                    <th>Path</th>
                     <th>Brand</th>
                     <th>Model</th>
                     <th>Serial Number</th>
@@ -25,7 +27,9 @@
             <tbody>
                 @foreach($projectors as $projector)
                          <tr>
-                        <td>{{ $projector->Brand }}</td>
+                            <td>{{ $projector->caption }}</td>
+                          <td>{{ $projector->path }}</td>
+                        <td>{{ $projector->nrand }}</td>
                         <td>{{ $projector->model }}</td>
                         <td>{{ $projector->serial_number }}</td>
 

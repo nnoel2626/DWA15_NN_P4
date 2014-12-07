@@ -3,20 +3,21 @@
 
 @section('content')
     <div class="page-header">
-        <h1>All Tripods<small>Gotta catch 'em all!</small></h1>
+        <h1>Delete a Mac from the library</h1>
     </div>
 
     <div class="panel panel-default">
         <div class="panel-body">
-            <a href="{{ action('TriposController@create') }}" class="btn btn-primary">Create Game</a>
+            <a href="{{ action('MacController@create') }}" class="btn btn-primary">Create Mac</a>
         </div>
     </div>
+<h1><small>Are you sure that you want to destroy this  mac entry?</small></h1>
 
-   
-To get around this, you'll have to create a mini-form with the DELETE method. Inside the form, you can embed a link that will submit the form (shown here with inline JS for simplicty):
+<form action="{{ action('MacController@handleDelete') }}" method="post" role="form">
+        <input type="hidden" name="mac" value="{{ $mac->id }}" />
+        <input type="submit" class="btn btn-danger" value="Yes" />
+        <a href="{{ action('MacController@index') }}" class="btn btn-default">No way!</a>
+    </form>
 
-{{ Form::open(['method' => 'DELETE', 'action' => ['TagController@destroy', $tag->id]]) }}
-    <a href='javascript:void(0)' onClick='parentNode.submit();return false;'>Delete</a>
-{{ Form::close() }}
 
 @stop

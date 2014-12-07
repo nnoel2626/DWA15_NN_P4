@@ -10,8 +10,7 @@
                     </tr>
                 </thead>
         <tbody>
-              {{---- @foreach($tripod as $tripod)--}}
-                         <tr>
+                        <tr>
                         <td>{{ $microphone->brand }}</td>
                         <td>{{ $microphone->model }}</td>
                         <td>{{ $microphone->serial_number }}</td>
@@ -22,7 +21,6 @@
                         <a href="{{ action('MicrophoneController@delete', $microphone->id) }}" class="btn btn-danger">Delete</a>
                          </td>
                 </tr>
-                {{--@endforeach--}}
             </tbody>
         </table>
 

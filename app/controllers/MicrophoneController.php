@@ -1,12 +1,8 @@
 <?php
 
 class MicrophoneController extends \BaseController {
-	/**
-	 * Display a listing of the resource.
-	 * GET /microphones
-	 *
-	 * @return Response
-	 */
+//-------------------- Display a listing of  resources. ---------//
+
 	public function index()
 	{   ///return 'all Microphones'--/
 		$microphones=microphone::all();
@@ -14,99 +10,80 @@ class MicrophoneController extends \BaseController {
 
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 * GET /microphones/create
-	 *
-	 * @return Response
-	 */
+ //-----------------------------To create a  Resource--------------------------------///
+
+
 	public function create()
 	{
-		return View::make('microphone.create');
+	return View::make('/microphone.create');
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 * POST /microphones
-	 *
-	 * @return Response
-	 */
-	public function store()
-	{
-		 // Handle create form submission.
-        $microphone = new Microphone;
-        $microphone->name       	= Input::get('name');
-        $microphone->model    		= Input::get('model');
-        $microphone->path    		= Input::get('path');
-        $microphone->serial_number  = Input::get('serial_number');
-        $microphone->save();
-        return Redirect::action('MicrophoneController@index');
-	}
+	public function postCreate( )
+	{ // Handle create form submission.
 
-	/**
-	 * Display the specified resource.
-	 * GET /microphones/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+                $microphone = new Microphone;
+                $microphone->fill(Input::all());
+                $microphone->save();
+
+             return Redirect::action('MicrophoneController@index')
+                ->with('flash_message', 'Your microphone has been added.');
+	   }
+//-----------------------------To Show a  Resource--------------------------------///
+
 	public function show($id)
 	{
-	return "showing with id of $id";
+	 try {
+                $microphone = Microphone::findOrFail($id);
+                }
+                catch(Exception $e)
+                {
+                return Redirect::to('/microphone.show')
+                ->with('flash_message', 'microphone not found');
+                }
+
+                //return var_dump($id) ;
+                return View::make('/microphone.show')
+                ->with('microphone', $microphone);
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 * GET /microphones/{id}/edit
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		 // Show the edit microphone form.
-        return View::make('microphone.edit', compact('microphone'));
+//-----------------------------To edit  a specific  resource--------------------------------///
+
+	public function edit(Microphone $microphone)
+	{// Show the edit microphone form.
+            return View::make('/microphone.edit', compact('microphone'))
+                                        ->with('microphone', $microphone);
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 * PUT /microphones/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		 // Handle edit form submission.
-        $microphone = Tripod::findOrFail(Input::get('id'));
-        $microphone->name        = Input::get('name');
-        $microphone->model     = Input::get('model');
-        $microphone->path     = Input::get('path');
-        $microphone->serial_number  = Input::get('serial_number');
-        $microphone->save();
-        return Redirect::action('MicrophoneController@index');
-	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 * DELETE /microphones/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
+	public function handleEdit( )
+	{    // Handle edit form submission.
+                    $microphone = Microphone::findOrFail(Input::get('id'));
+
+                    $microphone->name                   = Input::get('name');
+                    $microphone->model                  = Input::get('model');
+                    $microphone->path                     = Input::get('path');
+                    $microphone->serial_number     = Input::get('serial_number');
+                    $microphone->save();
+
+                return Redirect::action('MicrophoneController@index');
+	}
+//-----------------------------Remove the specified resource from storage.--------------------------------///
+
+
+	public function delete(Microphone $microphone)
 	{
 		 // Show delete confirmation page.
-        return View::make('microphone.delete', compact('microphone'));
+            return View::make('/microphone.delete', compact('microphone'));
 	}
 
 	public function handleDelete()
-    {
-        // Handle the delete confirmation.
-        $id = Input::get('microphone');
-        $microphone = Microphone::findOrFail($id);
-        $microphone->delete();
+            {
+                // Handle the delete confirmation.
+                $id = Input::get('microphone');
+                $microphone = Microphone::findOrFail($id);
+                $microphone->delete();
 
-        return Redirect::action('MicrophoneController@index');
-    }
+                return Redirect::action('MicrophoneController@index')
+                ->with('flash_message', 'Your microphone has been removed from database');;
+            }
 }

@@ -1,0 +1,1 @@
+C:\xampp\htdocs\dwa15_p4/resources/views/equipment/edit.blade.php

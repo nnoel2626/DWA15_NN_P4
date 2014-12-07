@@ -1,25 +1,28 @@
 @extends('layout')
-
+@section('title')
+    Add a new Audiorecorder
+@stop
 @section('content')
     <div class="page-header">
-        <h1>Add Equipment <small>and someday finish it!</small></h1>
+        <h1>Add Audiorecorder</h1>
     </div>
 
-    <form action="{{ action('AudiorecordersController@handlecreate') }}" method="post" role="form">
+    <form action="{{ action('AudiorecorderController@handlecreate') }}" method="post" role="form">
         <div class="form-group">
-            <label for="title">Title</label>
-            <input type="text" class="form-control" name="title" />
+            <label for="brand">Brand</label>
+            <input type="text" class="form-control" name="brand" />
         </div>
         <div class="form-group">
-            <label for="publisher">Publisher</label>
-            <input type="text" class="form-control" name="publisher" />
+            <label for="model">Model</label>
+            <input type="text" class="form-control" name="model" />
         </div>
-        <div class="checkbox">
-            <label for="complete">
-                <input type="checkbox" name="complete" /> Complete?
-            </label>
+            <div class="form-group">
+            <label for="serial_number">Serial Number</label>
+            <input type="text" class="form-control" name="serial_number" />
         </div>
+        </div>
+
         <input type="submit" value="Create" class="btn btn-primary" />
-        <a href="{{ action('AudiorecordersController@index') }}" class="btn btn-link">Cancel</a>
+        <a href="{{ action('AudiorecorderController@index') }}" class="btn btn-link">Cancel</a>
     </form>
 @stop

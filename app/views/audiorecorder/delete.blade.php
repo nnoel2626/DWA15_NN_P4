@@ -3,20 +3,20 @@
 
 @section('content')
     <div class="page-header">
-        <h1>All Tripods<small>Gotta catch 'em all!</small></h1>
+        <h1>Delete an audiorecorder from the library</h1>
     </div>
 
     <div class="panel panel-default">
         <div class="panel-body">
-            <a href="{{ action('TriposController@create') }}" class="btn btn-primary">Create Game</a>
+            <a href="{{ action('AudiorecorderController@create') }}" class="btn btn-primary">Create Audiorecorder</a>
         </div>
     </div>
 
-   
-To get around this, you'll have to create a mini-form with the DELETE method. Inside the form, you can embed a link that will submit the form (shown here with inline JS for simplicty):
+   <h1><small>Are you sure that you want to destroy this  audiorecorder entry?</small></h1>
 
-{{ Form::open(['method' => 'DELETE', 'action' => ['TagController@destroy', $tag->id]]) }}
-    <a href='javascript:void(0)' onClick='parentNode.submit();return false;'>Delete</a>
-{{ Form::close() }}
-
+<form action="{{ action('AudiorecorderController@handleDelete') }}" method="post" role="form">
+        <input type="hidden" name="audiorecorder" value="{{ $audiorecorder>id }}" />
+        <input type="submit" class="btn btn-danger" value="Yes" />
+        <a href="{{ action('AudiorecorderController@index') }}" class="btn btn-default">No way!</a>
+    </form>
 @stop
