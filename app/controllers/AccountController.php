@@ -38,7 +38,7 @@ class AccountController extends BaseController {
 
             if($auth){
                 // Redirect to the intended page
-                return Redirect::intended('/');
+                return Redirect::intended('/tripod.index');
             }
             else {
                 return Redirect::route('account-sign-in')

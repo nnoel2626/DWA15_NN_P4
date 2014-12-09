@@ -18,34 +18,31 @@
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+
+     @yield('head')
 </head>
 <body>
 
 <header>
-
-
-    <div class="container">
-
+    <a href='/'><img class='logo' src='/images/harvard_logo.jpg' alt='Harvard logo'></a>
         <h1>MTS A/V Equipment Rental</h1>
-        <p>Please, create an account  in order to sign-out equipment</p>
-    </div>
-
+        <div class="log-in">
+            @include('layout.navigation')
+        </div>
 </header>
 
+        <div class="top-container">
+        @include('layout.main_nav')
+        </div>
 
-<main class="container">
+        <main class="container">
+        @if(Session::has('global'))
+        <p>{{ Session::get('global') }}</p>
+        @endif
 
- @include('layout.main_nav')
+        @yield('content')
 
-  @include('layout.navigation')
-
- @if(Session::has('global'))
-<p>{{ Session::get('global') }}</p>
-@endif
-
-@yield('content')
-
-   </main>
+</main>
 
 <footer>
 

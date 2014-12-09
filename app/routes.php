@@ -14,7 +14,7 @@
                     'uses'  =>  'HomeController@home'
                 ]);
 
-        ///--------------Route to Home page---------///
+        ///--------------Route to Home page---------------------------------------------///
                 Route::get('/user/{username}', [
                     'as'    =>  'profile-user',
                     'uses'  =>  'ProfileController@user'
@@ -22,7 +22,7 @@
 
                 Route::group(array('domain' => '{username}.gmail.com'), function()
                 {
-                ///-------------------Route to Home page---------///
+                ///-------------------Route to Home page------------------------------//
                     Route::get('/user/{username}', [
                             'as'    =>  'profile-user',
                             'uses'  =>  'ProfileController@user'

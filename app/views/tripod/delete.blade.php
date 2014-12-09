@@ -19,7 +19,5 @@
         <a href="{{ action('TripodController@index') }}" class="btn btn-default">No way!</a>
     </form>
 
-
-
 @stop
 
