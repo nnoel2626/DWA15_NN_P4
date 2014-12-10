@@ -23,7 +23,7 @@ return array(
         'mysql' => array(
             'driver'    => 'mysql',
             'host'      => 'localhost',
-            'database'  => 'foobooks',
+            'database'  => 'mts-webapp',
             'username'  => 'root',
             'password'  => 'lwpUV2VXF4',
         ),
