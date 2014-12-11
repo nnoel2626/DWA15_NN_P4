@@ -1,16 +1,16 @@
 @extends('layout.main')
 
 @section('title')
-    Add a new Microphone
+    Add a new Projector
 @stop
 
 
 @section('content')
         <div class="page-header">
-                <h1>Add a new Microphone to library </h1>
+                <h1>Add a  new Projector to library </h1>
         </div>
 
-        <form action="{{ action ('MicrophoneController@postCreate') }}" method="post" role="form">
+        <form action="{{ action ('ProjectorController@postCreate') }}" method="post" role="form">
 
         <div class="form-group">
             <label for="brand">Brand</label>
@@ -27,12 +27,7 @@
             <input type="text" class="form-control" name="serial_number" />
         </div>
 
-
-        </div>
         <input type="submit" value="Create" class="btn btn-primary" />
 
-        <a href="{{ action('MicrophoneController@index') }}" class="btn btn-link">Cancel</a>
-
-    </form>
+        <a href="{{ action('ProjectorController@index') }}" class="btn btn-link">Cancel</a>
 @stop
-
