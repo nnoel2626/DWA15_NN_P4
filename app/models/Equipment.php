@@ -8,24 +8,24 @@ class Equipment extends Eloquent {
 
 
     /**
-    * Equipments belong to many Tags
+    * Equipments belong to many categories
     */
-    public function tags() {
-        return $this->belongsToMany('Tag');
+    public function categories() {
+        return $this->belongsToMany('Category');
     }
     /**
-    * Search among equipment and tags
+    * Search among equipment and categories
     * @return Collection
     */
     public static function search($query) {
         # If there is a query, search the library with that query
         if($query) {
-            # Eager load tags and author
-            $quipments = Equipment::with('tags','author')
+            # Eager load categories and author
+            $quipments = Equipment::with('categories','author')
             ->whereHas('author', function($q) use($query) {
                 $q->where('name', 'LIKE', "%$query%");
             })
-            ->orWhereHas('tags', function($q) use($query) {
+            ->orWhereHas('categories', function($q) use($query) {
                 $q->where('name', 'LIKE', "%$query%");
             })
             ->orWhere('title', 'LIKE', "%$query%")
@@ -37,16 +37,16 @@ class Equipment extends Eloquent {
         }
         # Otherwise, just fetch all Equipments
         else {
-            # Eager load tags and author
-            $equipments = Equipment::with('tags','author')->get();
+            # Eager load categories and author
+            $equipments = Equipment::with('categories','author')->get();
         }
         return $equipments;
     }
-    /**
+    *
     * Searches and returns any Equipments added in the last 24 hours
     *
     * @return Collection
-    */
+
     public static function getEquipmentsAddedInTheLast24Hours() {
         # Timestamp of 24 hours ago
         $past_24_hours = strtotime('-1 day');

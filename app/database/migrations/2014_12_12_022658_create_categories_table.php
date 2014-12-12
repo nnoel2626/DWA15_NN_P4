@@ -3,11 +3,11 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTagsTable extends Migration {
+class CreateCategoriesTable extends Migration {
 
 	public function up()
 	{
-		Schema::create('tags', function($table) {
+		Schema::create('categories', function($table) {
 
 			# AI, PK
 			$table->increments('id');
@@ -17,10 +17,10 @@ class CreateTagsTable extends Migration {
 
 			# General data....
 			$table->string('name', 64);
-
+			# Important! FK has to be unsigned because the PK it will reference is auto-incrementing
+			//$table->integer('equipment_id')->unsigned();
 			# Define foreign keys...
-			# none needed
-
+			//$table->foreign('equipment_id')->references('id')->on('equipments');
 		});
 	}
 
@@ -31,7 +31,7 @@ class CreateTagsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('tags');
+		Schema::drop('categries');
 	}
 
 }

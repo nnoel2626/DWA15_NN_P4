@@ -14,8 +14,7 @@ class UserTableSeeder extends DatabaseSeeder {
         'email' => 'name@domain.com',
         'username' => 'philipbrown',
         'name'        => 'Philip Brown'
-        'created_at' =>'new DateTime'
-        'updated_at' => 'new DateTime'
+
       ));
 
         $user->password = Hash::make('user')
