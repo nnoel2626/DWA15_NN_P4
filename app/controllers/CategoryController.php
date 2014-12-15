@@ -2,27 +2,29 @@
 
 class CategoryController extends BaseController {
 
-    public function __construct() {
+    //public function __construct() {
 
-        # Make sure BaseController construct gets called
-        parent::__construct();
+       # Make sure BaseController construct gets called
+       //parent::__construct();
 
-        # Only logged in users are allowed here
-        $this->beforeFilter('auth');
+       # Only logged in users are allowed here
+        // $this->beforeFilter('auth');
 
-    }
+        ///}
 
     /**
      * Display a listing of the resource.
      *
      * @return Response
      */
-    public function index() {
+        public function getIndex() {
 
-        $Categorys = Category::all();
-        return View::make('/category.index')->with('Categorys',$Categorys);
+               $categories = Category::all();
 
+        return View::make('/category.index', compact('categories'))
+        ->with('categories', $categories);
     }
+
 
 
     /**
@@ -30,8 +32,10 @@ class CategoryController extends BaseController {
      *
      * @return Response
      */
-    public function create() {
-        return View::make('/category.create');
+    public function getCreate() {
+               // return 'Form for to create form';
+
+       return View::make('/category.create');
     }
 
 
@@ -40,33 +44,31 @@ class CategoryController extends BaseController {
      *
      * @return Response
      */
-    public function store() {
+            public function postCreate() {
 
-        $Category = new Category;
-        $Category->name = Input::get('name');
-        $Category->save();
+            $category = new category;
+              $category->name = Input::get('name');
+             $category->save();
 
-        return Redirect::action('CategoryController@index')->with('flash_message','Your Category been added.');
+             return Redirect::action('CategoryController@getIndex')
+             ->with('flash_message','Your category been added.');
     }
 
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id) {
 
-        try {
-            $Category = Category::findOrFail($id);
-        }
-        catch(Exception $e) {
-            return Redirect::to('/Category')->with('flash_message', 'Category not found');
-        }
+        public function show($id) {
 
-        return View::make('/Category.show')->with('Category', $Category);
-    }
+
+       // return 'show a specific category';
+            //   try {
+            // $category = Category::findOrFail($id);
+            //      }
+            //     catch(Exception $e) {
+            // return Redirect::to('/category/index')->with('flash_message', 'Category not found');
+            //      }
+
+              return View::make('/category/show')->with('category', $category);
+        }
 
 
     /**
@@ -75,17 +77,18 @@ class CategoryController extends BaseController {
      * @param  int  $id
      * @return Response
      */
-    public function edit($id) {
+    public function getEdit($id) {
 
-        try {
-            $Category = Category::findOrFail($id);
+       //return 'form for editing';
+         try {
+           $category = Category::findOrFail($id);
         }
-        catch(Exception $e) {
-            return Redirect::to('/Category')->with('flash_message', 'Category not found');
-        }
+       catch(Exception $e) {
+        return Redirect::to('/category.edit')->with('flash_message', 'Category not found');
+         }
 
-        # Pass with the $Category object so we can do model binding on the form
-        return View::make('/Category.edit')->with('Category', $Category);
+        // //Pass with the $Category object so we can do model binding on the form
+        return View::make('/category/edit')->with('category', $category);
 
     }
 
@@ -96,19 +99,21 @@ class CategoryController extends BaseController {
      * @param  int  $id
      * @return Response
      */
-    public function update($id) {
+        public function postEdit($id) {
 
         try {
-            $Category = Category::findOrFail($id);
+            $category = Category::findOrFail($id);
         }
         catch(Exception $e) {
-            return Redirect::to('/Category')->with('flash_message', 'Category not found');
+            return Redirect::to('/category/index')
+            ->with('flash_message', 'category not found');
         }
 
-        $Category->name = Input::get('name');
-        $Category->save();
+        $category->name = Input::get('name');
+        $category->save();
 
-        return Redirect::action('CategoryController@index')->with('flash_message','Your Category has been saved.');
+        return Redirect::action('CategoryController@index')
+        ->with('flash_message','Your category has been saved.');
 
     }
 
@@ -119,22 +124,37 @@ class CategoryController extends BaseController {
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id) {
 
+
+
+     public function postDelete()
+    {
+        // Handle the delete confirmation.
         try {
-            $Category = Category::findOrFail($id);
+             $category = Category::findOrFail($id);
         }
-        catch(Exception $e) {
-            return Redirect::to('/Category')->with('flash_message', 'Category not found');
-        }
-
-        # Note there's a `deleting` Model event which makes sure book_Category entries are also destroyed
+               catch(Exception $e) {
+                return Redirect::to('/category/index')->with('flash_message', 'Category not found');
+       }
+         # Note there's a `deleting` Model event which makes sure category_equipment entries are also destroyed
         # See Category.php for more details
-        Category::destroy($id);
+        $category->delete($id);
 
-        return Redirect::action('CategoryController@index')->with('flash_message','Your Category has been deleted.');
-
+        return Redirect::action('CategoryController@GetIndex')
+        ->with('flash_message','Your Category has been deleted.');
     }
+
+
+    //
+
+    //     # Note there's a `deleting` Model event which makes sure category_equipment entries are also destroyed
+    //     # See Category.php for more details
+    //     category::delete($id);
+
+    //     return Redirect::action('CategoryController@index')
+
+    // }
+
 
 
 }

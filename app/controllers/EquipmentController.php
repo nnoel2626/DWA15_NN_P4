@@ -1,218 +1,156 @@
 <?php
 
-class EquipmentController extends \BaseController {
+class EquipmentController extends BaseController {
+
+            //public function __construct() {
+                # Make sure BaseController construct gets called
+                //parent::__construct();
+
+              // $this->beforeFilter('auth', array('except' => ['getIndex',]));
+           // }
 
 
-    /**
-    *
-    */
-    // public function __construct() {
+            public function getIndex()
+            {  return'list od equipments';
+                    // $equipments = Equipment::all();
 
-    //     # Make sure BaseController construct gets called
-    //     parent::__construct();
-
-    //     $this->beforeFilter('auth', array('except' => ['getIndex','getDigest']));
-
-    //}
-
-
-    /**
-    * Used as an example for something you might want to set up a cron job for
-    */
-    // public function getDigest() {
-
-    //     $Equipments = Equipment::getEquipmentsAddedInTheLast24Hours();
-
-    //     $users = User::all();
-
-    //     $recipients = Equipment::sendDigests($users,$Equipments);
-
-    //     $results = 'Equipment digest sent to: '.$recipients;
-
-    //     Log::info($results);
-
-    //     return $results;
-
-    // }
-
-
-    /**
-    * Process the searchform
-    * @return View
-    */
-    public function getSearch() {
-
-        return View::make('Equipment_search');
-
-    }
-
-
-    /**
-    * Display all Equipments
-    * @return View
-    */
-    public function getIndex() {
-
-        # Format and Query are passed as Query Strings
-        $format = Input::get('format', 'html');
-
-        $query  = Input::get('query');
-
-        $equipments = Equipment::search($query);
-
-        # Decide on output method...
-        # Default - HTML
-        if($format == 'html') {
-            return View::make('equipment.equipment_index')
-                ->with('equipments', $Equipments)
-                ->with('query', $query);
-        }
-        # JSON
-        elseif($format == 'json') {
-            return Response::json($equipments);
-        }
-        # PDF (Coming soon)
-        elseif($format == 'pdf') {
-            return "This is the pdf (Coming soon).";
-        }
-
-
-    }
-
-
-    /**
-    * Show the "Add a Equipment form"
-    * @return View
-    */
-    public function getCreate() {
-
-        $authors = Author::getIdNamePair();
-
-        return View::make('/equipment/equipment_add')->with('authors',$authors);
-
-    }
-
-
-    /**
-    * Process the "Add a Equipment form"
-    * @return Redirect
-    */
-    public function postCreate() {
-
-        # Instantiate the Equipment model
-        $equipment = new Equipment();
-
-        $equipment->fill(Input::all());
-        $equipment->save();
-
-        # Magic: Eloquent
-        $equipment->save();
-
-        return Redirect::action('EquipmentController@getIndex')->with('flash_message','Your Equipment has been added.');
-
-    }
-
-
-    /**
-    * Show the "Edit a Equipment form"
-    * @return View
-    */
-    public function getEdit($id) {
-
-        try {
-            $Equipment    = Equipment::findOrFail($id);
-            $authors = Author::getIdNamePair();
-        }
-        catch(exception $e) {
-            return Redirect::to('/equipment')->with('flash_message', 'Equipment not found');
-        }
-
-        return View::make('equipment.equipment_edit')
-            ->with('Equipment', $equipment)
-            ->with('authors', $authors);
-
-    }
-
-
-    /**
-    * Process the "Edit a Equipment form"
-    * @return Redirect
-    */
-    public function postEdit() {
-
-        try {
-            $Equipment = Equipment::findOrFail(Input::get('id'));
-        }
-        catch(exception $e) {
-            return Redirect::to('/Equipment')->with('flash_message', 'Equipment not found');
-        }
-
-        # http://laravel.com/docs/4.2/eloquent#mass-assignment
-        $Equipment->fill(Input::all());
-        $Equipment->save();
-
-        return Redirect::action('EquipmentController@getIndex')->with('flash_message','Your changes have been saved.');
-
-    }
-
-
-    /**
-    * Process Equipment deletion
-    *
-    * @return Redirect
-    */
-    public function postDelete() {
-
-        try {
-            $Equipment = Equipment::findOrFail(Input::get('id'));
-        }
-        catch(exception $e) {
-            return Redirect::to('/Equipment/')->with('flash_message', 'Could not delete Equipment - not found.');
-        }
-
-        Equipment::destroy(Input::get('id'));
-
-        return Redirect::to('/Equipment/')->with('flash_message', 'Equipment deleted.');
-
-    }
-
-
-    /**
-    * Process a Equipment search
-    * Called w/ Ajax
-    */
-    public function postSearch() {
-
-        if(Request::ajax()) {
-
-            $query  = Input::get('query');
-
-            # We're demoing two possible return formats: JSON or HTML
-            $format = Input::get('format');
-
-            # Do the actual query
-            $equipments  = Equipment::search($query);
-
-            # If the request is for JSON, just send the Equipments back as JSON
-            if($format == 'json') {
-                return Response::json($equipments);
+                    //return View::make('/equipment.getIndex', compact('equipments'))
+                    //->with('equipments', $equipments)
+                     // ->with('categories', $categories);
             }
-            # Otherwise, loop through the results building the HTML View we'll return
-            elseif($format == 'html') {
+ //-----------------------------To create a  Resource--------------------------------///
+                    public function getCreate()
+                    {   return 'Show the Add equipment input form';
+                        // $categories = Category::getIdNamePair();
+                        // return View::make('/equipment.create')
+                        // ->with('categories', $categories);
+                    }
 
-                $results = '';
-                foreach($equipments as $equipment) {
-                    # Created a "stub" of a view called Equipment_search_result.php; all it is is a stub of code to display a Equipment
-                    # For each Equipment, we'll add a new stub to the results
-                    $results .= View::make('equipment.equipment_search_result')->with('equipment', $equipment)->render();
-                }
+                    public function postCreate()
+                     {
+                         // validation rules
+                        $rules = array(
+                        'brand'       => 'required',
+                         'model'      => 'required',
+                         'serial_number' => 'required|numeric'
+                         );
 
-                # Return the HTML/View to JavaScript...
-                return $results;
+                        $validator = Validator::make(Input::all(), $rules);
+                         if ($validator->fails()) {
+                        return Redirect::to('/equipment/create')
+                                ->withErrors($validator);
+                      } else {
+                        //store//
+                        $equipment = new equipment();
+                       $equipment  ->brand                   =input::get('brand');
+                        $equipment  ->model                   =input::get('model');
+                        $equipment  ->serial_number       =input::get('serial_number');
+                        $equipment  ->image_path       =input::get('image_path');
+                        $equipment  ->save();
+
+
+                            //var_dump ($equipment);
+                        foreach( Input::get('categories') as $category) {
+                              # This enters a new row in the book_tag table
+                         $equipment->categories()->save(Category::find($category));
+
+                        return Redirect::action('EquipmentController@getIndex')
+                     ->with('flash_message','Your equipment has been added.');
+                        }
+                     }
+          }                  //$equipment->fill(Input::except('categories'));
+                            //$equipment->save();
+
+
+//-----------------------------To Show a  Resource--------------------------------///
+
+
+
+                public function show($id)
+                {
+
+                try {
+                $equipment  = Tripod::findOrFail($id);
+                    }
+                catch(Exception $e)
+                    {
+                return Redirect::to('/equipment.show')
+                ->with('flash_message', 'equipment  not found');
+                    }
+
+                //return var_dump($id) ;
+                return View::make('/equipment .show')
+                        ->with('equipment ', $equipment );
+              }
+
+//-----------------------------To Edit a  Resource--------------------------------///
+
+             public function getEdit($id)
+            {// Show the edit equipment form.
+           //return View::make('/equipment.edit', compact('equipments'));
+                return 'a specific requipment to edit';
             }
+
+        /**
+         * Update the specified equipment reccord in storage.
+         *
+         * @param  int  $id
+         * @return Response
+         */
+            public function postEdit()
+            {   // Handle edit form submission.
+                $equipment = Equipment::findOrFail(Input::get('id'));
+                $equipment->name                    = Input::get('name');
+                $equipment->brand                    = Input::get('publisher');
+                $equipment->model                   = Input::has('complete');
+                 $equipment->serial_number     = Input::has('serial_number');
+                 $equipment->image_path         = Input::has('image_path');
+
+                $equipment->save();
+
+            return Redirect::action('EquipmentController@index');
         }
+
+//-----------------------------To Delete a  Resource--------------------------------///
+
+
+        /**
+         * Remove the specified equipment from storage.
+         *
+         * @param  int  $id
+         * @return Response
+         */
+        public function getDelete($id)
+        {
+            // Show delete confirmation page.
+            //return View::make('delete', compact('equipment'));
+            return 'delete form to confirm';
+        }
+
+
+        //  public function postDelete()
+        // {
+        //     try {
+        //     $equipment = Equipment::findOrFail(Input::get('id'));
+        // }
+        // catch(exception $e) {
+        //     return Redirect::to('/equipment/index')->with('flash_message', 'Could not delete Equipment - not found.');
+        // }
+        //          Equipment::destroy(Input::get('id'));
+
+        //     // // Handle the delete confirmation.
+        //     // $id = Input::get('equipment');
+        //     // $equipments = Equipment::findOrFail($id);
+        //     // $equipments->delete();
+
+        //     return Redirect::to('/equipment/index')->with('flash_message', 'Equipment deleted.');
+        // }
     }
 
 
 
-}
+  //var_dump( $equipment );
+                    //echo $collection;
+                    //echo Pre::render($collection);
+
+

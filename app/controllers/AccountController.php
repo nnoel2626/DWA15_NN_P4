@@ -40,6 +40,11 @@ class AccountController extends BaseController {
                 // Redirect to the intended page
                 return Redirect::intended('/tripod.index');
             }
+
+
+
+
+
             else {
                 return Redirect::route('account-sign-in')
                     ->with('global','Email/Password wrong, or account not activated');
@@ -79,9 +84,9 @@ class AccountController extends BaseController {
         else {
 
             //create account
-            $email            =  Input::get('email');
-            $username   =  Input::get('username');
-            $password    =  Input::get('password');
+            $email             =  Input::get('email');
+            $username      =  Input::get('username');
+            $password      =  Input::get('password');
             //Activation code
             $code           =  str_random(60);
 
