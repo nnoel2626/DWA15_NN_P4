@@ -17,11 +17,10 @@ class CreateTables extends Migration {
 			# AI, PK
 			$table->increments('id');
 			# General data...
-			$table->string('name');
 			# Important! FK has to be unsigned because the PK it will reference is auto-incrementing
-			$table->integer('category_id')->unsigned();
+
 			# Define foreign keys...
-			//$table->foreign('category_id')->references('id')->on('categories');
+			$table->string('name');
 			$table->string('brand');
 			$table->string('model');
 			$table->string('serial_number');
@@ -40,9 +39,9 @@ class CreateTables extends Migration {
 			# General data....
 			$table->string('name', 64);
 			# Important! FK has to be unsigned because the PK it will reference is auto-incrementing
-			$table->integer('equipment_id')->unsigned();
+
 			# Define foreign keys...
-			$table->foreign('equipment_id')->references('id')->on('equipments');
+
 			# created_at, updated_at columns
 			$table->timestamps();
 
@@ -68,9 +67,10 @@ class CreateTables extends Migration {
 	 */
 	public function down()
 
-	{		Schema::drop('equipments_category');
+	{
 			Schema::drop('equipments');
 			Schema::drop('categories');
+			Schema::drop('equipments_category');
 
 	}
 

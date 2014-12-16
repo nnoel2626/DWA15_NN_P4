@@ -11,19 +11,19 @@ class EquipmentController extends BaseController {
 
 
             public function getIndex()
-            {  return'list od equipments';
-                    // $equipments = Equipment::all();
-
-                    //return View::make('/equipment.getIndex', compact('equipments'))
-                    //->with('equipments', $equipments)
-                     // ->with('categories', $categories);
+            {  //return'list od equipments';
+                     $equipments = Equipment::all();
+                     //var_dump( $equipments );
+                    return View::make('/equipment.getIndex', compact('equipments'))
+                    ->with('equipments', $equipments)
+                     ->with('categories', $categories);
             }
  //-----------------------------To create a  Resource--------------------------------///
                     public function getCreate()
-                    {   return 'Show the Add equipment input form';
-                        // $categories = Category::getIdNamePair();
-                        // return View::make('/equipment.create')
-                        // ->with('categories', $categories);
+                    {   //return 'Show the Add equipment input form';
+                        $categories = Category::getIdNamePair();
+                        return View::make('/equipment.create')
+                        ->with('categories', $categories);
                     }
 
                     public function postCreate()
@@ -49,10 +49,10 @@ class EquipmentController extends BaseController {
                         $equipment  ->save();
 
 
-                            //var_dump ($equipment);
+                            //var_dump ($equipments);
                         foreach( Input::get('categories') as $category) {
-                              # This enters a new row in the book_tag table
-                         $equipment->categories()->save(Category::find($category));
+                              # This enters a new row in the category_equipment table
+                         $equipments->categories()->save(Category::find($category));
 
                         return Redirect::action('EquipmentController@getIndex')
                      ->with('flash_message','Your equipment has been added.');
@@ -87,9 +87,22 @@ class EquipmentController extends BaseController {
 
              public function getEdit($id)
             {// Show the edit equipment form.
-           //return View::make('/equipment.edit', compact('equipments'));
-                return 'a specific requipment to edit';
-            }
+                try {
+                $equipment  = Equipment::with('categories')->findOrFail($id);
+                 $categories    = Category::getIdNamePair();
+                 }
+
+                 catch(exception $e) {
+
+                    return Redirect::to('/equipment/index')->with('flash_message', 'Equipment not found');
+                }
+                    return View::make('/equipment.edit')
+                    ->with('equipment', $equipment )
+                     ->with('categories', $categories);
+
+
+                        //return 'a specific requipment to edit';
+                 }
 
         /**
          * Update the specified equipment reccord in storage.
@@ -99,16 +112,35 @@ class EquipmentController extends BaseController {
          */
             public function postEdit()
             {   // Handle edit form submission.
-                $equipment = Equipment::findOrFail(Input::get('id'));
-                $equipment->name                    = Input::get('name');
-                $equipment->brand                    = Input::get('publisher');
-                $equipment->model                   = Input::has('complete');
-                 $equipment->serial_number     = Input::has('serial_number');
-                 $equipment->image_path         = Input::has('image_path');
+                try {
+                $equipment = Equipment::with('categoies')->findOrFail(Input::get('id'));
+                     }
+                catch(exception $e) {
+                return Redirect::to('/equipment/index')->with('flash_message', 'Equipment not found');
+                }
+                     try {
+                        $equipment->fill(Input::except('categoies'));
+                             $equipment->save();
 
-                $equipment->save();
+                // $equipment->name                    = Input::get('name');
+                // $equipment->brand                    = Input::get('publisher');
+                // $equipment->model                   = Input::has('complete');
+                //  $equipment->serial_number     = Input::has('serial_number');
+                //  $equipment->image_path         = Input::has('image_path');
 
-            return Redirect::action('EquipmentController@index');
+
+                     # Update tags associated with this book
+                    if(!isset($_POST['categoies'])) $_POST['categoies'] = array();
+                    $equipment->updateCategoies($_POST['categoies']);
+
+            return Redirect::action('EquipmentController@index')
+            ->with('flash_message','Your changes have been saved.');
+
+                }
+             catch(exception $e) {
+            return Redirect::to('/equipment/index')->with('flash_message', 'Error saving changes.');
+                 }
+
         }
 
 //-----------------------------To Delete a  Resource--------------------------------///
@@ -128,29 +160,29 @@ class EquipmentController extends BaseController {
         }
 
 
-        //  public function postDelete()
-        // {
-        //     try {
-        //     $equipment = Equipment::findOrFail(Input::get('id'));
-        // }
-        // catch(exception $e) {
-        //     return Redirect::to('/equipment/index')->with('flash_message', 'Could not delete Equipment - not found.');
-        // }
-        //          Equipment::destroy(Input::get('id'));
+         public function postDelete()
+        {
+            try {
+            $equipment = Equipment::findOrFail(Input::get('id'));
+        }
+        catch(exception $e) {
+            return Redirect::to('/equipment/index')->with('flash_message', 'Could not delete Equipment - not found.');
+        }
+                 Equipment::destroy(Input::get('id'));
 
-        //     // // Handle the delete confirmation.
-        //     // $id = Input::get('equipment');
-        //     // $equipments = Equipment::findOrFail($id);
-        //     // $equipments->delete();
+            // // Handle the delete confirmation.
+            // $id = Input::get('equipment');
+            // $equipments = Equipment::findOrFail($id);
+            // $equipments->delete();
 
-        //     return Redirect::to('/equipment/index')->with('flash_message', 'Equipment deleted.');
-        // }
-    }
+            return Redirect::to('/equipment/index')->with('flash_message', 'Equipment deleted.');
+        }
+   }
 
 
 
-  //var_dump( $equipment );
-                    //echo $collection;
-                    //echo Pre::render($collection);
+//   //var_dump( $equipment );
+//                     //echo $collection;
+//                     //echo Pre::render($collection);
 
 

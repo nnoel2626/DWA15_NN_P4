@@ -1,5 +1,5 @@
 <?php
-class CategoryTableSeeder extends DatabaseSeeder {
+class CategoryTableSeeder extends \DatabaseSeeder {
 
     /**
      * Run the database seeds.
@@ -30,3 +30,4 @@ class CategoryTableSeeder extends DatabaseSeeder {
     }
 
 }
+

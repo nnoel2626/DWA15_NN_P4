@@ -34,7 +34,7 @@ class AddEquipments extends Migration {
       		));
 
 	   DB::table('equipments')->insert(array(
-		  'name' => 'Mac',
+		               'name' => 'Mac',
                             'brand' => 'Apple',
         	               'model' => 'Mac-Pro',
                             'serial_number' => '145689',

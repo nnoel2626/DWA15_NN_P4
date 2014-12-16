@@ -66,40 +66,39 @@ class Equipment extends Eloquent {
     }
 
 
-//     *
-//     * Searches and returns any Equipments added in the last 24 hours
-//     *
-//     * @return Collection
 
-//     public static function getEquipmentsAddedInTheLast24Hours() {
-//         # Timestamp of 24 hours ago
-//         $past_24_hours = strtotime('-1 day');
-//         # Convert to MySQL timestamp
-//         $past_24_hours = date('Y-m-d H:i:s', $past_24_hours);
-//         $equipments = Equipment::where('created_at','>',$past_24_hours)->get();
-//         return $equipments;
-//     }
-//     /**
-//     *
-//     *
-//     * @return String
-//     */
-//     public static function sendDigests($users,$equipments) {
-//         $recipients = '';
-//         $data['equipments'] = $equipments;
-//         foreach($users as $user) {
-//             $data['user'] = $user;
-//             /*
-//             Mail::send('emails.digest', $data, function($message) {
-//                 $recipient_email = $user->email;
-//                 $recipient_name  = $user->first_name.' '.$user->last_name;
-//                 $subject  = 'FooEquipments Digest';
-//                 $message->to($recipient_email, $recipient_name)->subject($subject);
-//             });
-//             */
-//             $recipients .= $user->email.', ';
-//         }
-//         $recipients = rtrim($recipients, ',');
-//         return $recipients;
-//     }
+     /* Searches and returns any Equipments added in the last 24 hours*/
+
+
+    public static function getEquipmentsAddedInTheLast24Hours() {
+        # Timestamp of 24 hours ago
+        $past_24_hours = strtotime('-1 day');
+        # Convert to MySQL timestamp
+        $past_24_hours = date('Y-m-d H:i:s', $past_24_hours);
+        $equipments = Equipment::where('created_at','>',$past_24_hours)->get();
+        return $equipments;
+    }
+    /**
+    *
+    *
+    * @return String
+    */
+    public static function sendDigests($users,$equipments) {
+        $recipients = '';
+        $data['equipments'] = $equipments;
+        foreach($users as $user) {
+            $data['user'] = $user;
+            /*
+            Mail::send('emails.digest', $data, function($message) {
+                $recipient_email = $user->email;
+                $recipient_name  = $user->first_name.' '.$user->last_name;
+                $subject  = 'FooEquipments Digest';
+                $message->to($recipient_email, $recipient_name)->subject($subject);
+            });
+            */
+            $recipients .= $user->email.', ';
+        }
+        $recipients = rtrim($recipients, ',');
+        return $recipients;
+    }
 }

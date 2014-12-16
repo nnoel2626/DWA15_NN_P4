@@ -11,7 +11,7 @@
 @section('content')
 
     <h1>Edit</h1>
-    <h2>{{{ $equipment['band'] }}}</h2>
+    <h2>{{{ $equipment['name'] }}}</h2>
 
     {{---- EDIT -----}}
     {{ Form::open(array('url' => '/equipment/edit')) }}
@@ -22,8 +22,6 @@
             {{ Form::label('name','Name') }}
             {{ Form::text('name',$equipment['name']); }}
         </div>
-
-
 
         <div class='form-group'>
             {{ Form::label('band','Band') }}
