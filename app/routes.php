@@ -150,7 +150,7 @@
             // echo Paste\Pre::render(get_declared_classes(),'');
            // });
 //--------------------------------equipments route------------------------////
-                //Route::model('equipments', 'Equipment');
+                Route::model('equipment', 'Equipment');
                 //route::resource('equipment', 'equipmentController');
                 Route::get('/equipment/index',        'EquipmentController@getIndex');
                 Route::get('/equipment/create',      'EquipmentController@getCreate');

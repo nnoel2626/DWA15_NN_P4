@@ -11,7 +11,7 @@ class Equipment extends Eloquent {
     * Equipments belong to many categories
     */
     public function categories() {
-        return $this->has_Many('Category');
+        return $this->belongsToMany('Category');
     }
 
     /**
