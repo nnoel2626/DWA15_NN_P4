@@ -11,7 +11,7 @@ class EquipmentTableSeeder extends DatabaseSeeder {
                 DB::statement('TRUNCATE equipment');
 
 
-                $audiorecorder = new equipment;
+                $audiorecorder = new Equipment;
                 $audiorecorder->name = 'audiorecorder';
                 $audiorecorder->brand = 'sony';
                 $audiorecorder->model = 'L-185';
@@ -23,7 +23,7 @@ class EquipmentTableSeeder extends DatabaseSeeder {
                 $audiorecorder->categories()->attach($category->id);
 
 
-                  $dungle = new equipment;
+                  $dungle = new Equipment;
                   $dungle->name = 'dungle';
                  $dungle->brand = 'extron';
                  $dungle->model = 'l-185';
@@ -37,7 +37,7 @@ class EquipmentTableSeeder extends DatabaseSeeder {
 
 
                   # equipment
-                 $laptop = new equipment;
+                 $laptop = new Equipment;
                  $laptop->name = 'laptop';
                  $laptop->brand = 'dell';
                  $laptop->model = 'Latitude';
@@ -50,7 +50,7 @@ class EquipmentTableSeeder extends DatabaseSeeder {
 
 
 
-                   $mac  = new equipment;
+                   $mac  = new Equipment;
                    $mac ->name = 'mac';
                    $mac ->brand = 'apple';
                    $mac ->model = 'Mac-Pro';
@@ -64,7 +64,7 @@ class EquipmentTableSeeder extends DatabaseSeeder {
 
 
 
-                 $microphone = new equipment;
+                 $microphone = new Equipment;
                 $microphone->name = 'microphone';
                  $microphone->brand = 'shure';
                  $microphone->model = 'sm-58';
@@ -75,7 +75,7 @@ class EquipmentTableSeeder extends DatabaseSeeder {
                   $category = Category::where('name', '=','microphone')->first();
                    $microphone->categories()->attach($category->id);
 
-                 $projector = new equipment;
+                 $projector = new Equipment;
                  $projector->name = 'projector';
                  $projector->brand = 'sanyo';
                  $projector->model = 'wtc-500';
@@ -86,7 +86,7 @@ class EquipmentTableSeeder extends DatabaseSeeder {
                  $category = Category::where('name', '=','projector')->first();
                  $projector->categories()->attach($category->id);
 
-                 $tripod = new equipment;
+                 $tripod = new Equipment;
                 $tripod->name = 'tripod';
                 $tripod->brand = 'manfrotto';
                  $tripod->model = 'T-25';
@@ -98,7 +98,7 @@ class EquipmentTableSeeder extends DatabaseSeeder {
                  $tripod->categories()->attach($category->id);
 
 
-                $videocamera = new equipment;
+                $videocamera = new Equipment;
                  $videocamera->name = 'videocamera';
                  $videocamera->brand = 'sony';
                  $videocamera->model = 'ts4000';
