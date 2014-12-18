@@ -7,11 +7,9 @@ Add a new equipment
 
 {{ Form::open(array('url' => '/equipment.postCreate')) }}
 
-@foreach($categories as $id => $category)
-<ul>
-<li>{{ Form::checkbox('categories[ ]', $id); }} {{ $category }}</li>
-</ul>
-@endforeach
+
+{{ Form::label('name','Name') }}
+{{ Form::text('name'); }}
 
 {{ Form::label('brand','Brand') }}
 {{ Form::text('brand'); }}
@@ -27,7 +25,11 @@ Add a new equipment
 {{ Form::text('image'); }}
 
 
-
+@foreach($categories as $id => $category)
+<ul>
+<li>{{ Form::checkbox('categories[ ]', $id); }} {{ $category }}</li>
+</ul>
+@endforeach
 
 {{ Form::submit('Add'); }}
 {{ Form::close() }}

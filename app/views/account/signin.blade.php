@@ -1,39 +1,44 @@
 @extends('layout.main')
 
+
 @section('title')
      Login_page
 @stop
 
+@section('head')
+    {{ HTML::style('css/front-page.css') }}
+@stop
+
+
 @section('content')
 
-<h2 class="form-signin-heading">Please Login</h2>
 
-     {{ Form::open(array ('account-sign-in-post')) }}
+<main class="container">
+            <section id="content">
+            <h2 class="form-signin-heading">Please Login</h2>
 
-    <div class="form-group">
-    {{ Form::text('email', null, array( 'placeholder' => 'Email Address')) }}
+            {{ Form::open(array ('account-sign-in-post')) }}
 
-    @if($errors->has('email'))
+            {{ Form::text('email', null, array( 'placeholder' => 'Email Address')) }}
 
-    {{ $errors ->first('email') }}
+            @if($errors->has('email')) {{ $errors ->first('email') }}@endif
 
-    @endif </div>
+            {{ Form::password('password', array( 'placeholder'=>'Password')) }}
 
-<div class="form-group">
-    {{ Form::password('password', array( 'placeholder'=>'Password')) }}
+            @if($errors->has('password')){{ $errors ->first('password') }} @endif
 
-    @if($errors->has('password'))
+            {{ Form::submit('Login', array('class'=>'button'))}}
 
-    {{ $errors ->first('password') }}
+            {{ Form::close() }}
 
-    @endif   </div>
+            <a href="{{ URL::route('account-create') }}">Create Account</a><span>|
 
-    <div class="form-group">
-    {{ Form::submit('Login', array('class'=>'btn btn-primary'))}}   </div>
+           <a href="{{ URL::route('account-forgot-password') }}">Forgot Password</a></span><br>
+
+            </section>
 
 
-    {{ Form::close() }}
-
+   </main>
 
 @stop
 

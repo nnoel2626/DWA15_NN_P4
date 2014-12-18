@@ -140,7 +140,26 @@ label,input {
         color: rgb(254,231,154);
         text-decoration:none;
 }
+.equipment {
+    border:1px solid #ccc;
+    padding:10px;
+    padding-top:0px;
+    float:left;
+    width:300px;
+    margin-right:10px;
+    margin-bottom:10px;
+    height:250px;
 
+}
+
+.categoty {
+    background-color:#F8F8F8;
+    padding:2px;
+    font-size:11px;
+    font-family:consolas;
+    margin:2px;
+    display:inline-block;
+}
 nav  {
 
     text-align: right;
@@ -163,17 +182,32 @@ nav ul li {
 nav a{color: rgb(254,231,154);
 }
 
-.p-login{
+.text-login{
     text-align: center;
     display:inline-block;
-     float:center;
+    float:center;
     font: bold 18px Helvetica, Arial, sans-serif;
     height: 35px;
-
-
-    text-shadow: 0 1px 0 rgba(255,255,255,0.5);
     width: 100%;
 }
+
+.nav-login{
+    padding:10px;
+    list-style-type: none;
+    text-align: center;
+    display:inline-block;
+    font: bold 18px Helvetica, Arial, sans-serif;
+    float:center;
+    width: 100%;
+   }
+
+
+ .nav-login ul {
+                background:#fad990;
+                float:center;
+                border:1px dotted black;
+                 width:500px;
+                }
 
 a:link, a:visited, a:active, a:hover {
     text-decoration: none;

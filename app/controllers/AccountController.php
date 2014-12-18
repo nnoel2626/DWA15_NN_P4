@@ -18,17 +18,17 @@ class AccountController extends BaseController {
                 'password'        => 'required'
             ]
         );
-
-        if($validator->fails()){
-            return Redirect::route('account-sign-in')
-                ->withErrors($validator)
-                ->withInput();
+               // var_dump($validator);
+       if($validator->fails()){
+           return Redirect::route('account-sign-in')
+               ->withErrors($validator)
+               ->withInput();
         }
         else {
 
             $remember = (Input::has('remember')) ? true : false;
 
-            //Attempt user sign in
+           # Attempt user sign in
             $auth = Auth::attempt([
                 'email' => Input::get('email'),
                 'password' => Input::get('password'),
@@ -38,10 +38,8 @@ class AccountController extends BaseController {
 
             if($auth){
                 // Redirect to the intended page
-                return Redirect::intended('/tripod.index');
+                return Redirect::intended('/equipment.index');
             }
-
-
 
 
 

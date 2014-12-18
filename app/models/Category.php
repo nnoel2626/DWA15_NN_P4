@@ -5,7 +5,7 @@ class Category extends Eloquent {
 
 
     // Equipment has many category//
-    public function equipments()
+    public function eequipment()
     {
         return $this->belongsToMany('Equipment');
     }

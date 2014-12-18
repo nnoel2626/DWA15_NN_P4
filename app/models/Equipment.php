@@ -8,7 +8,7 @@ class Equipment extends Eloquent {
 
 
     /**
-    * Equipments belong to many categories
+    * equipment belong to many categories
     */
     public function categories() {
         return $this->belongsToMany('Category');
@@ -42,7 +42,7 @@ class Equipment extends Eloquent {
         #If there is a query, search the library with that query
         if($query) {
             #Eager load categories and author
-            $quipments = Equipment::with('categories')
+            $equipment = Equipment::with('categories')
             ->whereHas('category', function($q) use($query) {
                $q->where('name', 'LIKE', "%$query%");
             })
@@ -57,42 +57,42 @@ class Equipment extends Eloquent {
             #Closures may inherit variables from the parent scope.
             #Any such variables must be passed to the `use` language construct.
         }
-        #Otherwise, just fetch all Equipments
+        #Otherwise, just fetch all equipment
         else {
             #Eager load categories and author
-           $equipments = Equipment::with('categories')->get();
+           $equipment = Equipment::with('categories')->get();
         }
-       return $equipments;
+       return $equipment;
     }
 
 
 
-     /* Searches and returns any Equipments added in the last 24 hours*/
+     /* Searches and returns any equipment added in the last 24 hours*/
 
 
-    public static function getEquipmentsAddedInTheLast24Hours() {
+    public static function getequipmentAddedInTheLast24Hours() {
         # Timestamp of 24 hours ago
         $past_24_hours = strtotime('-1 day');
         # Convert to MySQL timestamp
         $past_24_hours = date('Y-m-d H:i:s', $past_24_hours);
-        $equipments = Equipment::where('created_at','>',$past_24_hours)->get();
-        return $equipments;
+        $equipment = Equipment::where('created_at','>',$past_24_hours)->get();
+        return $equipment;
     }
     /**
     *
     *
     * @return String
     */
-    public static function sendDigests($users,$equipments) {
+    public static function sendDigests($users,$equipment) {
         $recipients = '';
-        $data['equipments'] = $equipments;
+        $data['equipment'] = $equipment;
         foreach($users as $user) {
             $data['user'] = $user;
             /*
             Mail::send('emails.digest', $data, function($message) {
                 $recipient_email = $user->email;
                 $recipient_name  = $user->first_name.' '.$user->last_name;
-                $subject  = 'FooEquipments Digest';
+                $subject  = 'Fooequipment Digest';
                 $message->to($recipient_email, $recipient_name)->subject($subject);
             });
             */

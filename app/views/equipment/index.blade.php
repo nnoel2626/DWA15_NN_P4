@@ -6,7 +6,7 @@
 
  @section('content')
 
-     <h1>Equipments</h1>
+     <h1>Equipment</h1>
 
  <div>
          View as:
@@ -15,19 +15,19 @@
      </div>
 
 
-     @if($query)
+     {{--@if($query)
          <h2>You searched for {{{ $query }}}</h2>
-     @endif
+     @endif  --}}
 
-     @if(sizeof($equipments) == 0)
+     @if(sizeof($equipment) == 0)
          No results
      @else
 
-         @foreach($equipments as $equipment)
+         @foreach($equipment as $equipment)
              <section class='equipment'>
 
                      </p>
-                      @foreach($equipments['categories'] as $category)
+                      @foreach($equipment['categories'] as $category)
                          <span class='category'>{{{ $category->name }}}</span>
                      @endforeach
                         <p>
@@ -35,9 +35,13 @@
                         <h2>{{ $equipment['brand'] }}</h2>
                         <p>    {{ $equipment['model'] }} </p>
                           <p>  {{$equipment['serial_number'] }} </p>
+                          <p>  {{$equipment['image_path'] }} </p>
 
-                <br>
 
+                    <a href="{{ action('EquipmentController@getEdit', $category->id) }}" class="btn btn-default">Edit</a>
+            <a href="{{ action('EquipmentController@postDelete', $category->id) }}" class="btn btn-danger">Delete</a>
+            <a href="{{ action('EquipmentController@getCreate') }}" class="btn btn-primary">Add </a>
+             <br> <br>
             </section>
          @endforeach
 

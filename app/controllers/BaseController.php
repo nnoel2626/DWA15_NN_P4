@@ -5,6 +5,8 @@ class BaseController extends Controller {
 
 	protected function _construct()
 	{
+		//parent::__construct();
+
 	$this ->beforeFilter('csrf', array(' on' => 'post'));
 
 	}

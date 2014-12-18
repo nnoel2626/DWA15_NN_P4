@@ -13,7 +13,7 @@ class CreateTables extends Migration {
 	public function up()
 	{
 
-		Schema::create('equipments', function($table) {
+		Schema::create('equipment', function($table) {
 			# AI, PK
 			$table->increments('id');
 			# General data...
@@ -50,7 +50,7 @@ class CreateTables extends Migration {
 		Schema::create('category_equipment' , function($table){
 
 			$table->integer('equipment_id')->unsigned();
-			$table->foreign('equipment_id')->references('id')->on('equipments');
+			$table->foreign('equipment_id')->references('id')->on('equipment');
 
 			# Define foreign keys...
 
@@ -68,9 +68,9 @@ class CreateTables extends Migration {
 	public function down()
 
 	{
-			Schema::drop('equipments');
+			Schema::drop('equipment');
 			Schema::drop('categories');
-			Schema::drop('equipments_category');
+			Schema::drop('category_equipment');
 
 	}
 

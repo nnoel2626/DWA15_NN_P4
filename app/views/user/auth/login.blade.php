@@ -3,7 +3,7 @@
 @section('content')
 
 <h2>Please login</h2>
-{{ Form::open(array('route' => 'user.login.post')) }}
+{{ Form::open(array('/category/index' => 'user.login.post')) }}
 <ul>
     <li>
         {{ Form::label('email', 'Email') }}
