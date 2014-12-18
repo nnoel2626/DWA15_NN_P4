@@ -12,17 +12,16 @@ class EquipmentTableSeeder extends DatabaseSeeder {
                 DB::statement('TRUNCATE equipment');
 
 
-
-                 # equipment
-                $audiorecorder = new equipment;
-                $audiorecorder->name = 'audiorecorder';
-                $audiorecorder->brand = 'sony';
-                $audiorecorder->model = 'L-185';
-                $audiorecorder->serial_number = '123456';
-                $audiorecorder->image_path ='/public/images/';
-                 $audiorecorder->save();
-                $category = Category::where('name', '=','audiorecorder')->first();
-                $audiorecorder->categories()->attach($category->id);
+                // $audiorecorder = new equipment;
+                // $audiorecorder->name = 'audiorecorder';
+                // $audiorecorder->brand = 'sony';
+                // $audiorecorder->model = 'L-185';
+                // $audiorecorder->serial_number = '123456';
+                // $audiorecorder->image_path ='/public/images/';
+                // $audiorecorder->save();
+                // $category = Category::where('name', '=','audiorecorder')->first();
+                // $audiorecorder->categories()->attach($category->id);
+                // $audiorecorder->save();
 
                   $dungle = new equipment;
                   $dungle->name = 'dungle';
@@ -30,10 +29,12 @@ class EquipmentTableSeeder extends DatabaseSeeder {
                  $dungle->model = 'L-185';
                  $dungle->serial_number = '123789';
                  $dungle->image_path ='/public/images/';
-                 $dungle->save();
+                $dungle->save();
 
                  $category = Category::where('name', '=','dungle')->first();
                  $dungle->categories()->attach($category->id);
+                $dungle->save();
+
 
                   # equipment
                  $laptop= new equipment;
@@ -44,7 +45,7 @@ class EquipmentTableSeeder extends DatabaseSeeder {
                  $laptop->image_path ='/public/images/';
                  $laptop->save();
                  $category = Category::where('name', '=','laptop')->first();
-              $laptop->categories()->attach($category->id);
+                $laptop->categories()->attach($category->id);
 
 
 
@@ -92,7 +93,7 @@ class EquipmentTableSeeder extends DatabaseSeeder {
                  $tripod->categories()->attach($category->id);
 
 
-                $videocamera = new equipment;
+                    $videocamera = new equipment;
                  $videocamera->name = 'videocamera';
                  $videocamera->brand = 'Sony';
                  $videocamera->model = 'TS4000';
