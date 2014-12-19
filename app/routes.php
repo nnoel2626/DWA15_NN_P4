@@ -150,7 +150,7 @@
             // echo Paste\Pre::render(get_declared_classes(),'');
            // });
 //--------------------------------equipments route------------------------////
-                Route::model('equipment', 'Equipment');
+               // Route::model('equipment', 'Equipment');
                 //route::resource('equipment', 'equipmentController');
                 Route::get('/equipment/index',        'EquipmentController@getIndex');
                 Route::get('/equipment/create',      'EquipmentController@getCreate');
@@ -168,7 +168,7 @@
 
 
  //-------------------------------- Category route------------------------////
-                Route::model('category', 'Category');
+                //Route::model('category', 'Category');
                     //Route::resource('category', 'CategoryController');
                 Route::get('/category/index',      'CategoryController@getIndex');
                 Route::get('/category/create', 'CategoryController@getCreate');

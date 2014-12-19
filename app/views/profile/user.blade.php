@@ -12,7 +12,7 @@ extends('layout.main')
 Username:
 {{
     Form::text( 'username', e($user->username), [
-    'class'=>'asif-khan'
+
 ] )
 }}
 
@@ -31,5 +31,5 @@ Email:
 @extends("layout")
 @section("content")
 <h2>Hello {{ Auth::user()->username }}</h2>
-<p>Welcome to your sparse profile page.</p>
+<p>Welcome .</p>
 @stop

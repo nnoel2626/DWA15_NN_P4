@@ -38,8 +38,8 @@
                           <p>  {{$equipment['image_path'] }} </p>
 
 
-                    <a href="{{ action('EquipmentController@getEdit', $category->id) }}" class="btn btn-default">Edit</a>
-            <a href="{{ action('EquipmentController@postDelete', $category->id) }}" class="btn btn-danger">Delete</a>
+                    <a href="{{ action('EquipmentController@getEdit', $equipment->id) }}" class="btn btn-default">Edit</a>
+            <a href="{{ action('EquipmentController@getDelete', $equipment->id) }}" class="btn btn-danger">Delete</a>
             <a href="{{ action('EquipmentController@getCreate') }}" class="btn btn-primary">Add </a>
              <br> <br>
             </section>

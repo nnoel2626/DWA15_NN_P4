@@ -28,7 +28,7 @@ return array(
 	|
 	*/
 
-	'host' => 'smtp.mailgun.org',
+	'host' => 'smtp.gmail.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => 'mail@mts-webapp.com', 'name' => 'MTS-WebApp'),
+	'from' => array('address' => 'mensah33@gmail.com', 'name' => 'MTS-WebApp'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return array(
 	|
 	*/
 
-	'username' => 'postmaster@sandbox62eda2ff5ccb4b8bbf8ef5123babfe8a.mailgun.org',
+	'username' => 'mensah33@gmail.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return array(
 	|
 	*/
 
-	'password' => 'b93e414864bf2f443e227b701a0c2021 ',
+	'password' => 'Bety1126 ',
 
 	/*
 	|--------------------------------------------------------------------------

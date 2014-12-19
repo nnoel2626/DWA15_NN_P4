@@ -4,13 +4,14 @@ class CategoryController extends BaseController {
 
     //public function __construct() {
 
-       # Make sure BaseController construct gets called
-       //parent::__construct();
+       //Make sure BaseController construct gets called
+      // parent::__construct();
 
-       # Only logged in users are allowed here
-        // $this->beforeFilter('auth');
+      // Only logged in users are allowed here
+        //$this->beforeFilter('auth');
 
-        ///}
+       // }
+
 
     /**
      * Display a listing of the resource.

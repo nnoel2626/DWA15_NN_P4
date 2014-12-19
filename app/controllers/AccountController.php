@@ -2,15 +2,10 @@
 
 class AccountController extends BaseController {
 
-    public function getSignIn()
-    {
-
-    return View::make('account.signin');
-
+    public function getSignIn() {
+        return View::make('account.signin');
     }
-
-    public function postSignIn()
-     {
+    public function postSignIn() {
 
         $validator = Validator::make(Input::all(),
             [
@@ -18,17 +13,16 @@ class AccountController extends BaseController {
                 'password'        => 'required'
             ]
         );
-               // var_dump($validator);
-       if($validator->fails()){
-           return Redirect::route('account-sign-in')
-               ->withErrors($validator)
-               ->withInput();
+        if($validator->fails()){
+            return Redirect::route('account-sign-in')
+                ->withErrors($validator)
+                ->withInput();
         }
         else {
 
             $remember = (Input::has('remember')) ? true : false;
 
-           # Attempt user sign in
+            //Attempt user sign in
             $auth = Auth::attempt([
                 'email' => Input::get('email'),
                 'password' => Input::get('password'),
@@ -38,11 +32,8 @@ class AccountController extends BaseController {
 
             if($auth){
                 // Redirect to the intended page
-                return Redirect::intended('/equipment.index');
+                return Redirect::intended('/');
             }
-
-
-
             else {
                 return Redirect::route('account-sign-in')
                     ->with('global','Email/Password wrong, or account not activated');
@@ -53,10 +44,15 @@ class AccountController extends BaseController {
             ->with('global','There was a problem signing you in.');
     }
 
+
+
+//----------------------------------------------------------------getSignOut-------------------------------------------------//
     public function getSignOut() {
         Auth::logout();
         return Redirect::route('home');
     }
+
+//----------------------------------------------------------------getCreate-------------------------------------------------//
 
     public function getCreate() {
         return View::make('account.create');
@@ -117,9 +113,7 @@ class AccountController extends BaseController {
             }
         }
      }
-
-
-
+//----------------------------------------------------------------getActivate-------------------------------------------------//
 
     public function getActivate($code) {
 //        return $code;
@@ -145,6 +139,8 @@ class AccountController extends BaseController {
             ->with('global', 'We could not activate your account. Please try again later.');
          }
 
+
+//--------------------------------------------------------------getChangePassword------------------------------------------------//
     public function getChangePassword() {
         return View::make('account.password');
          }
@@ -202,10 +198,7 @@ class AccountController extends BaseController {
             ->with('global','Your password could not be changed.');
         }
 
-
-
-
-
+//--------------------------------------------------------------getForgotPassword------------------------------------------------//
 
     public function getForgotPassword() {
         return View::make('account.forgot');
@@ -260,7 +253,7 @@ class AccountController extends BaseController {
         return Redirect::route('account-forgot-password')
             ->with('global','Could not request new password');
     }
-
+//-------------------------------------------------------------- getRecover------------------------------------------------//
     public function getRecover($code) {
 //        return $code;
 

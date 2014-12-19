@@ -2,12 +2,12 @@
 
 class EquipmentController extends BaseController {
 
-           // public function __construct() {
-           //   # Make sure BaseController construct gets called
-           //   // parent::__construct();
+          // public function __construct() {
+             # Make sure BaseController construct gets called
+             //parent::__construct();
 
-           //    $this->beforeFilter('auth', array('except' => ['getIndex',]));
-           // }
+              //$this->beforeFilter('auth');
+           //}
 
 
             public function getIndex()
@@ -22,9 +22,9 @@ class EquipmentController extends BaseController {
  //-----------------------------To create a  Resource--------------------------------///
                     public function getCreate()
                     {   //return 'Show the Add equipment input form';
-                        $categories = Category::getIdNamePair();
-                        return View::make('/equipment.create')
-                        ->with('categories', $categories);
+                         $categories = Category::getIdNamePair();
+                         return View::make('/equipment/create')
+                         ->with('categories', $categories);
                     }
 
 
@@ -38,7 +38,7 @@ class EquipmentController extends BaseController {
                        $equipment->save();
                         foreach(Input::get('$categories') as $category) {
                             # This enters a new row in the category_equipment table
-                           $equipment->$categories()->save(Category::find($category));
+                           $equipment->$categories()->attach(Category::find($category));
                         }
                         return Redirect::action('EquipmentController@getIndex')->with('flash_message','Your equipment has been added.');
                     }
@@ -90,7 +90,7 @@ class EquipmentController extends BaseController {
                     }
                 catch(Exception $e)
                     {
-                return Redirect::to('/equipment.show')
+                return Redirect::to('/equipment/show')
                 ->with('flash_message', 'equipment  not found');
                     }
 
@@ -102,23 +102,25 @@ class EquipmentController extends BaseController {
 //-----------------------------To Edit a  Resource--------------------------------///
 
              public function getEdit($id)
-            {// Show the edit equipment form.
+            {   //return ' form to edit equiment';
+
+            // Show the edit equipment form.
                 try {
                 $equipment  = Equipment::with('categories')->findOrFail($id);
                  $categories    = Category::getIdNamePair();
                  }
 
-                 catch(exception $e) {
+                  catch(exception $e) {
 
                     return Redirect::to('/equipment/index')->with('flash_message', 'Equipment not found');
-                }
-                    return View::make('/equipment/getEdit')
-                    ->with('equipment', $equipment )
-                     ->with('categories', $categories);
-
-
-                        //return 'a specific requipment to edit';
                  }
+                    return View::make('/equipment/edit')
+                     ->with('equipment', $equipment )
+                    ->with('categories', $categories);
+
+
+                       //return 'a specific requipment to edit';
+                }
 
 
             public function postEdit()
@@ -127,7 +129,7 @@ class EquipmentController extends BaseController {
                 $equipment = Equipment::with('categoies')->findOrFail(Input::get('id'));
                      }
                 catch(exception $e) {
-                return Redirect::to('/equipment/getIndex')->with('flash_message', 'Equipment not found');
+                return Redirect::to('/equipment/index')->with('flash_message', 'Equipment not found');
                 }
                      try {
                         $equipment->fill(Input::except('categoies'));
@@ -142,7 +144,7 @@ class EquipmentController extends BaseController {
 
                 }
              catch(exception $e) {
-            return Redirect::to('/equipment/getIndex')->with('flash_message', 'Error saving changes.');
+            return Redirect::to('/equipment/index')->with('flash_message', 'Error saving changes.');
                  }
 
         }
@@ -159,8 +161,8 @@ class EquipmentController extends BaseController {
         public function getDelete($id)
         {
             // Show delete confirmation page.
-            //return View::make('delete', compact('equipment'));
-            return 'delete form to confirm';
+            return View::make('/equipment.delete', compact('equipment'));
+            //return 'delete form to confirm';
         }
 
 
@@ -170,13 +172,13 @@ class EquipmentController extends BaseController {
             $equipment = Equipment::findOrFail(Input::get('id'));
         }
         catch(exception $e) {
-            return Redirect::to('/equipment/getIndex')->with('flash_message', 'Could not delete Equipment - not found.');
+            return Redirect::to('/equipment/index')->with('flash_message', 'Could not delete Equipment - not found.');
         }
                  Equipment::destroy(Input::get('id'));
 
 
 
-            return Redirect::to('/equipment/getIndex')->with('flash_message', 'Equipment deleted.');
+            return Redirect::to('/equipment/index')->with('flash_message', 'Equipment deleted.');
         }
    }
 

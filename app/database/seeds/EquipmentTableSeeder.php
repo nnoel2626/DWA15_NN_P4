@@ -16,7 +16,7 @@ class EquipmentTableSeeder extends DatabaseSeeder {
                 $audiorecorder->brand = 'sony';
                 $audiorecorder->model = 'L-185';
                 $audiorecorder->serial_number = '123456';
-                $audiorecorder->image_path ='/public/images/';
+                $audiorecorder->image_path ='images/q3hd-1.jpg';
                 $audiorecorder->save();
 
                 $category = Category::where('name', '=','audiorecorder')->first();
@@ -28,7 +28,7 @@ class EquipmentTableSeeder extends DatabaseSeeder {
                  $dungle->brand = 'extron';
                  $dungle->model = 'l-185';
                  $dungle->serial_number = '123789';
-                 $dungle->image_path ='/public/images/';
+                 $dungle->image_path ='images/mac_dungle.jpg';
                 $dungle->save();
 
                  $category = Category::where('name', '=','dungle')->first();
@@ -42,7 +42,7 @@ class EquipmentTableSeeder extends DatabaseSeeder {
                  $laptop->brand = 'dell';
                  $laptop->model = 'Latitude';
                  $laptop->serial_number = '123456';
-                 $laptop->image_path ='/public/images/';
+                 $laptop->image_path ='images/dell_laptop.jpg';
                  $laptop->save();
 
                  $category = Category::where('name', '=','laptop')->first();
@@ -55,7 +55,7 @@ class EquipmentTableSeeder extends DatabaseSeeder {
                    $mac ->brand = 'apple';
                    $mac ->model = 'Mac-Pro';
                    $mac ->serial_number = '123789';
-                   $mac ->image_path ='/public/images/';
+                   $mac ->image_path ='images/mac-pro.jpg';
                    $mac ->save();
 
                  $category = Category::where('name', '=','mac')->first();
@@ -69,7 +69,7 @@ class EquipmentTableSeeder extends DatabaseSeeder {
                  $microphone->brand = 'shure';
                  $microphone->model = 'sm-58';
                  $microphone->serial_number = '1255456';
-                 $microphone->image_path = '/public/images/';
+                 $microphone->image_path = 'images/shure_mic.jpg';
                  $microphone->save();
 
                   $category = Category::where('name', '=','microphone')->first();
@@ -80,7 +80,7 @@ class EquipmentTableSeeder extends DatabaseSeeder {
                  $projector->brand = 'sanyo';
                  $projector->model = 'wtc-500';
                 $projector->serial_number = '1254566';
-                 $projector->image_path = '/public/images/';
+                 $projector->image_path = 'images/sanyo_projector.jpg';
                  $projector->save();
 
                  $category = Category::where('name', '=','projector')->first();
@@ -91,7 +91,7 @@ class EquipmentTableSeeder extends DatabaseSeeder {
                 $tripod->brand = 'manfrotto';
                  $tripod->model = 'T-25';
                  $tripod->serial_number = '1254566';
-                 $tripod->image_path = '/public/images/';
+                 $tripod->image_path = 'images/tripod.jpg';
                  $tripod->save();
 
                  $category = Category::where('name', '=','tripod')->first();
@@ -103,7 +103,7 @@ class EquipmentTableSeeder extends DatabaseSeeder {
                  $videocamera->brand = 'sony';
                  $videocamera->model = 'ts4000';
                  $videocamera->serial_number = '1254566';
-                 $videocamera->image_path = '/public/images/';
+                 $videocamera->image_path = 'images/hdzoom_cam.jpg';
                  $videocamera->save();
 
                  $category = Category::where('name', '=','videocamera')->first();

@@ -5,32 +5,47 @@ Add a new equipment
 @section('content')
 <h1>Add a new equipment</h1>
 
-{{ Form::open(array('url' => '/equipment.postCreate')) }}
 
 
-{{ Form::label('name','Name') }}
-{{ Form::text('name'); }}
+<form action="{{ action('EquipmentController@postCreate') }}" method="post" role="form">
 
-{{ Form::label('brand','Brand') }}
-{{ Form::text('brand'); }}
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" name="name" />
+        </div>
 
-{{ Form::label('model','Model') }}
+        <div class="form-group">
+            <label for="brand">Brand</label>
+            <input type="text" class="form-control" name="brand" />
+        </div>
+        <div class="form-group">
+            <label for="model">Model</label>
+            <input type="text" class="form-control" name="model" />
+        </div>
+            <div class="form-group">
+            <label for="serial_number">Serial Number</label>
+            <input type="text" class="form-control" name="serial_number" />
+        </div>
+         <div class="form-group">
+            <label for="image_path">Image path</label>
+            <input type="text" class="form-control" name="image_path" />
+        </div>
 
-{{ Form::text('model'); }}
-
-{{ Form::label('serial_number','serial number ') }}
-{{ Form::text('image'); }}
-
-{{ Form::label('image_path','Image image') }}
-{{ Form::text('image'); }}
+            @foreach($categories as $id => $category)
+            <ul>
+            <li>{{ Form::checkbox('categories[ ]', $id); }} {{ $category }}</li>
+            </ul>
+            @endforeach
 
 
-@foreach($categories as $id => $category)
-<ul>
-<li>{{ Form::checkbox('categories[ ]', $id); }} {{ $category }}</li>
-</ul>
-@endforeach
+        <input type="submit" value="Create" class="btn btn-primary" />
 
-{{ Form::submit('Add'); }}
-{{ Form::close() }}
+        <a href="{{ action('EquipmentController@getIndex') }}" class="btn btn-link">Cancel</a>
+    </form>
+
+
+
+
 @stop
+
+

@@ -1,7 +1,7 @@
     <nav>
     <ul>
-        <li><a href="{{ URL::route('home') }}">Home</a></li>
-        <li><a href="{{ URL::route('/audiorecorder/index') }}">List of audiorecorders</a></li>
+        <li><a href="{{ URL('home') }}">Home</a></li>
+        <li><a href="{{ URL('/audiorecorder/index') }}">List of audiorecorders</a></li>
         <li><a href="{{ URL::route('/dungle/index') }}">List of dungles</a></li>
         <li><a href="{{ URL::route('/videocam/index') }}">List of videocams</a></li>
         <li><a href="{{ URL::route('/mac/index') }}">List of macs</a></li>
