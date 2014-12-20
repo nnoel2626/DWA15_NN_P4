@@ -1,8 +1,6 @@
 <?php
 
-use Illuminate\Auth\adminTrait;
 
-use Illuminate\Auth\AdminInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 
 use Illuminate\Auth\Reminders\RemindableInterface;

@@ -1,6 +1,5 @@
 
-
-@extends('layout.main')
+@extends('layout._master')
 
 @section('title')
 
@@ -9,14 +8,14 @@ All the Categories
 
 @section('content')
     <div class="page-header">
-        <h2>All Categories </h2>
+        <h2>Listing of all Categories </h2>
     </div>
 
         <div class="panel panel-default">
-            <div class="panel-body">
+            <div class="panel-body" >
 
            @if ($categories->isEmpty())
-        <p>There are no Tripods! :(</p>
+        <p>There are no Categories! :(</p>
     @else
 
      <table class="table table-striped">
@@ -31,10 +30,7 @@ All the Categories
                       <td>{{ $category->name }}</td>
                         <td>
 
-            <a href="{{ action('CategoryController@getEdit', $category->id) }}" class="btn btn-default">Edit</a>
-            <a href="{{ action('CategoryController@postDelete', $category->id) }}" class="btn btn-danger">Delete</a>
-            <a href="{{ action('CategoryController@getCreate') }}" class="btn btn-primary">Add new Category</a>
-            </div>
+           
                 </td>
                  </tr>
                     @endforeach

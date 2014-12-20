@@ -1,17 +1,14 @@
-
-@extends('layout.main')
+@extends('layout._master')
 
 @section('title')
-
 Create a new category
 @stop
-
 @section('content')
- <div class="page-header">
+<div class="page-header">
 <h2>Create a category</h2>
- </div>
-  <div class="panel panel-default">
-{{ Form::open(array('action' => 'CategoryController@postCreate')) }}
+</div>
+<div class="panel panel-default">
+{{ Form::open(array('action' => 'CategoryController@update')) }}
 </div>
 <div class="panel panel-default">
 {{ Form::label('name','category Name') }}

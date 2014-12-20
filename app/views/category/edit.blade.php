@@ -1,11 +1,11 @@
-@extends('layout.main')
+@extends('layout._master')
 @section('title')
 Edit Category
 @stop
 @section('content')
 
 
-{{ Form::model($category, ['method' => 'post', 'action' => ['CategoryController@postEdit', $category->id]]) }}
+{{ Form::model($category, ['method' => 'post', 'action' => ['CategoryController@update', $category->id]]) }}
 <h2>Update: {{ $category->name }}</h2>
 
 <div class="panel panel-default">
@@ -16,7 +16,7 @@ Edit Category
 {{ Form::close() }}
 
 {{---- DELETE -----}}
-{{ Form::open(['method' => 'DELETE', 'action' => ['CategoryController@postDelete', $category->id]]) }}
+{{ Form::open(['method' => 'DELETE', 'action' => ['CategoryController@destroy', $category->id]]) }}
 <a href='javascript:void(0)' onClick='parentNode.submit();return false;'>Delete</a>
 {{ Form::close() }}
 @stop

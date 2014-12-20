@@ -1,8 +1,11 @@
-@extends('_master')
+@extends('layout._master')
+
 @section('title')
+
 View Category
 @stop
 @section('content')
+
 <h2>Category: {{ $category->name }}</h2>
 <div>
 Created: {{ $category->created_at }}

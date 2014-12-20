@@ -11,3 +11,9 @@
         <li><a href="{{ URL::route('/tripod/index') }}">List of tripods</a></li>
     </ul>
 </nav>
+
+
+
+
+
+

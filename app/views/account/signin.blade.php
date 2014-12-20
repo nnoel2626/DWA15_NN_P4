@@ -15,38 +15,25 @@
 
 <main class="container">
             <section id="content">
-
             <h2 class="form-signin-heading">Please Login</h2>
 
-            <form action="{{ URL::route('account-sign-in-post') }}" method="post">
-        <div class="field">
-            Email: <input type="text" name="email" {{ (Input::old('email')) ? 'value="'. e(Input::old('email')) .'"' : '' }}/>
+            {{ Form::open(array ('account-sign-in-post')) }}
 
-           @if($errors->has('email'))
-                {{ $errors->first('email') }}
-            @endif
-        </div>
-        <div class="field">
-            Password: <input type="password" name="password"/>
+            {{ Form::text('email', null, array( 'placeholder' => 'Email Address')) }}
 
+            @if($errors->has('email')) {{ $errors ->first('email') }}@endif
 
-            @if($errors->has('password'))
-                {{ $errors->first('password') }}
-            @endif
-        </div>
-        <div class="field">
-            <input type="checkbox" name="remember" id="remember"/>
-            <label for="remember">Remember Me</label>
-        </div>
+            {{ Form::password('password', array( 'placeholder'=>'Password')) }}
 
-        {{ Form::token() }}
+            @if($errors->has('password')){{ $errors ->first('password') }} @endif
 
-        <input type="submit" value="Sign In"/>
-         </form>
+            {{ Form::submit('Login', array('class'=>'button'))}}
 
-            <a href="{{ URL::route('account-create') }}">Create Account</a><span>|
+            {{ Form::close() }}
 
-           <a href="{{ URL::route('account-forgot-password') }}">Forgot Password</a></span><br>
+            <a href="{{ URL::route('account-create') }}">Create Account</a><span>
+
+           <a href="{{ URL::route('account-forgot-password') }}">Forgot Password</a></span>
 
             </section>
 

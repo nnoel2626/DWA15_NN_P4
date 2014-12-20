@@ -39,15 +39,14 @@
         @if(Session::has('global'))
         <p>{{ Session::get('global') }}</p>
         @endif
+
         @yield('content')
-        </main>
 
-
-
+</main>
 
 <footer>
-    <div>
-        &copy; {{ date('Y') }} AV Rental  Web App |
+
+        &copy; {{ date('Y') }} AV rental  Web App |
     </div>
 </footer>
 

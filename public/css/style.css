@@ -72,7 +72,7 @@ footer {
 .container {
     max-width: auto;
     margin: 0 auto;
-    width: 80%;
+    width: 100%;
     padding: 0 .1%;
 }
 
@@ -140,26 +140,7 @@ label,input {
         color: rgb(254,231,154);
         text-decoration:none;
 }
-.equipment {
-    border:1px solid #ccc;
-    padding:10px;
-    padding-top:0px;
-    float:left;
-    width:300px;
-    margin-right:10px;
-    margin-bottom:10px;
-    height:250px;
 
-}
-
-.categoty {
-    background-color:#F8F8F8;
-    padding:2px;
-    font-size:11px;
-    font-family:consolas;
-    margin:2px;
-    display:inline-block;
-}
 nav  {
 
     text-align: right;
@@ -191,7 +172,7 @@ nav a{color: rgb(254,231,154);
     width: 100%;
 }
 
-.nav-login{
+.nav-login{    
     padding:10px;
     list-style-type: none;
     text-align: center;
