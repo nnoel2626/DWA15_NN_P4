@@ -20,9 +20,9 @@ $this->beforeFilter('csrf', array('on' => 'post'));
 ///---Special method that gets triggered if the user enters a URL for a method that does not exist///
 
 
-	// public function missingMethod($parameters = array()) {
-	// 	return 'Method "'.$parameters[0].'" not found';
-	// }
+	 public function missingMethod($parameters = array()) {
+	 	return 'Method "'.$parameters[0].'" not found';
+	 }
 
 
 }

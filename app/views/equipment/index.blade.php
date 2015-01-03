@@ -1,4 +1,4 @@
- @extends('layout._master')
+  @extends('layout._master')
 @section('title')
 Equipments
 @stop
@@ -18,18 +18,20 @@ No results
 @foreach($equipment as $equipment)
 <section class='equipment'>
 </p>
+
 @foreach($equipment['categories'] as $category)
 <span class='category'>{{{ $category->name }}}</span>
 @endforeach
-<p>
+<img src="/{{$equipment['image_path']}}">
 <h2>{{ $equipment['brand'] }}</h2>
 <p> {{ $equipment['model'] }} </p>
 <p> {{$equipment['serial_number'] }} </p>
 <p> {{$equipment['image_path'] }} </p>
 
 <a href="{{ action('EquipmentController@getEdit', $equipment->id) }}" class="btn btn-default">Edit</a>
-<a href="{{ action('EquipmentController@postDelete', $equipment->id) }}" class="btn btn-danger">Delete</a>
+<a href="{{ action('EquipmentController@getDelete', $equipment->id) }}" class="btn btn-danger">Delete</a>
 <a href="{{ action('EquipmentController@getCreate') }}" class="btn btn-primary">Add </a>
+
 
 <br> <br>
 </section>

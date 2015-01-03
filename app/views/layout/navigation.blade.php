@@ -1,5 +1,5 @@
-<nav>
-   <!--  <ul>
+<!-- <nav>
+    <ul>
         @if(Auth::check())
               <li><a href="{{ URL::route('account-sign-out') }}">Sign Out</a></li>
             <li class="nav-divider">|</li>
@@ -12,7 +12,7 @@
             <li class="nav-divider">|</li>
             <li><a href="{{ URL::route('account-forgot-password') }}">Forgot Password</a></li>
         @endif
-    </ul> --> -->
+    </ul> 
 
 
 
@@ -29,3 +29,4 @@
 
 </nav>
 
+ -->

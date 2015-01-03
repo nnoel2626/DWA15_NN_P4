@@ -28,9 +28,13 @@ All the Categories
                 @foreach($categories as $category)
                 <tr>
                       <td>{{ $category->name }}</td>
-                        <td>
+                    <td>
+                <a href="{{ action('CategoryController@getCreate') }}" class="btn btn-primary">Add </a>
+                <a href="{{ action('CategoryController@getEdit', $category->id) }}" class="btn btn-default">Edit</a>
+                <a href="{{ action('CategoryController@getDelete', $category->id) }}" class="btn btn-danger">Delete</a>
+                
 
-           
+                <br> <br>
                 </td>
                  </tr>
                     @endforeach

@@ -3,11 +3,11 @@
 class Equipment extends Eloquent {
 	
     # The guarded properties specifies which attributes should *not* be mass-assignable
-    protected $guarded = array('id','name', 'brand', 'created_at', 'updated_at');
+    protected $guarded = array('id','created_at', 'updated_at');
 
 
     /**
-    * Equipments belong to many categories
+    * Equipment belong to many categories
     */
     public function categories() {
         return $this->belongsToMany('Category');
@@ -21,10 +21,10 @@ class Equipment extends Eloquent {
         // Go through new categories to see what ones need to be added
         foreach($new as $category) {
         if(!$this->categories->contains($category)) {
-        $this->categories()->save(category::find($category));
+        $this->categories()->save(Category::find($category));
         }
         }
-        // Go through existing categories and see what ones need to be deleted
+        // Go through existing categories and see which ones need to be deleted
         foreach($this->categories as $category) {
         if(!in_array($category->pivot->category_id,$new)) {
         $this->categories()->detach($category->id);
@@ -33,9 +33,9 @@ class Equipment extends Eloquent {
         }
 
    
-    public static function search($query) {
-        # If there is a query, search the library with that query
-        if($query) {
+         public static function search($query) {
+            # If there is a query, search the library with that query
+            if($query) {
             # Eager load categories 
             $quipment = Equipment::with('categories')
             ->whereHas(function($q) use($query) {

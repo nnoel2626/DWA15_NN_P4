@@ -176,7 +176,7 @@
                 Route::get('/equipment/index',      'EquipmentController@getIndex');
                  Route::get('/equipment/create', 'EquipmentController@getCreate');
                 Route::get('/equipment/edit/{id}', 'EquipmentController@getEdit');
-               
+               Route::get('/equipment/delete/{id}', 'EquipmentController@getDelete');
                
                 Route::post('/equipment/create', 'EquipmentController@postCreate');
                 Route::post('/equipment/edit', 'EquipmentController@postEdit');
@@ -188,18 +188,19 @@
 
 
  //-------------------------------- Category route------------------------////
-                Route::model('category', 'Category');
+                //Route::model('category', 'Category');
 
                 //Route::resource('category', 'CategoryController');
-                Route::get('/category/index',      'CategoryController@index');
-                Route::get('/category/create', 'CategoryController@create');
-                Route::post('/category/create', 'CategoryController@store');
-               
-                Route::post('/category/show{id}', 'CategoryController@show');
+                Route::get('/category/index',      'CategoryController@getIndex');
+                Route::get('/category/create', 'CategoryController@getCreate');
+                Route::get('/category/edit/{id}', 'CategoryController@getEdit'); 
+                Route::get('/category/getDelete{id}', 'CategoryController@getDelete');
+                               
+                // Route::post('/category/show{id}', 'CategoryController@show');
                 
-                Route::get('/category/edit/{id}', 'CategoryController@Edit'); 
-                Route::post('/category/edit', 'CategoryController@update');
-                Route::post('/category/destroy', 'CategoryController@destroy');
+                Route::post('/category/create', 'CategoryController@postCreate');
+                Route::post('/category/edit', 'CategoryController@postEdit');
+                Route::post('/category/delete', 'CategoryController@postDelete');
 
                             /**(Explicit Routing)**/
     //----------------Route all resource for Audiorecorders----------------//

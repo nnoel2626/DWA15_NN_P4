@@ -12,7 +12,8 @@ class IndexController extends BaseController {
 		/**
 		*
 		*/
-		public function getIndex() {
+		public function getIndex() 
+		{
 		return View::make('index');
 		}
 }

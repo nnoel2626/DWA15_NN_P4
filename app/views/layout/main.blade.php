@@ -24,7 +24,7 @@
 <body>
 
 <header>
-    <a href='/'><img class='logo' src='/images/harvard_logo.jpg' alt='Harvard logo'></a>
+    <a href='/'><img class='logo' src='images/harvard_logo.jpg' alt='Harvard logo'></a>
         <h1>MTS A/V Equipment Rental</h1>
         <div class="log-in">
             @include('layout.navigation')

@@ -14,8 +14,10 @@ class Category extends Eloquent {
 		
 		# Model events...
 		# http://laravel.com/docs/eloquent#model-events
-		public static function boot() {
-		parent::boot();
+		public static function boot() 
+		{
+			parent::boot();
+
 		static::deleting(function($category) {
 		DB::statement('DELETE FROM category_equipment WHERE category_id = ?', array($category->id));
 		});

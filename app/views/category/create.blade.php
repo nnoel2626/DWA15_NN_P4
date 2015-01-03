@@ -8,7 +8,7 @@ Create a new category
 <h2>Create a category</h2>
 </div>
 <div class="panel panel-default">
-{{ Form::open(array('action' => 'CategoryController@update')) }}
+{{ Form::open(array('action' => 'CategoryController@postCreate')) }}
 </div>
 <div class="panel panel-default">
 {{ Form::label('name','category Name') }}

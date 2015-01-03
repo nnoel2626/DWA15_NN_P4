@@ -96,16 +96,16 @@ class EquipmentController extends \BaseController {
     }
 
 
-    // /**
-    // * Show the "Add a Equipment form"
-    // * @return View
-    // */
+     /**
+     * Show the "Add a Equipment form"
+     * @return View
+     */
     public function getCreate() {
          //return'form to create equipment';
         $categories = Category::getIdNamePair();
 
-        return View::make('/equipment.create');
-        //->with('categories',$categories);
+        return View::make('/equipment/create')
+        ->with('categories',$categories);
 
     }
 
@@ -141,8 +141,10 @@ class EquipmentController extends \BaseController {
     public function getEdit($id) {
          //return'form to edit equipment';
         try {
-          $equipment = Equipment::findOrFail($id);
-           $category = Category::getIdNamePair();
+            # Get this equipment and all of its associated categories
+          $equipment = Equipment::with('categories')->findOrFail($id);
+          # Get all the categories (not just the ones associated with this equipment)
+           $categories = Category::getIdNamePair();
         }
         catch(exception $e) {
             return Redirect::to('/equipment/index')
@@ -151,7 +153,7 @@ class EquipmentController extends \BaseController {
 
         return View::make('/equipment/edit')
             ->with('equipment', $equipment)
-            ->with('category', $category);
+            ->with('categories', $categories);
 
     }
 
@@ -175,7 +177,7 @@ class EquipmentController extends \BaseController {
         $equipment->fill(Input::except('categories'));
         $equipment->save();
 
-            # Update tags associated with this book
+            # Update categories associated with this equipment
             if(!isset($_POST['categories'])) $_POST['categories'] = array();
             $equipment->updateCategories($_POST['categories']);
 
@@ -189,7 +191,22 @@ class EquipmentController extends \BaseController {
     *
     * @return Redirect
     */
-    public function postDelete() {
+        public function getDelete($id) {
+          #return'form for deletion';
+         try {
+        $equipment = Equipment::findOrFail($id);
+        }
+         catch(Exception $e) {
+        return Redirect::to('/equipment/index')
+         ->with('flash_message', 'Equipment not found');
+         }       
+             return View::make('/equipment/delete')
+            ->with('equipment', $equipment);
+
+        }
+
+
+        public function postDelete() {
 
         try {
             $equipment = Equipment::findOrFail(Input::get('id'));

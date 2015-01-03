@@ -12,7 +12,7 @@ $('#search-json').click(function() {
 			$.each(response, function( index, value ) {
 				var author = response[index]['category']['name'];
 				
-				$('#results').append(title + ' by ' + author + '<br><br>');
+				$('#results').append(title + ' by ' + category + '<br><br>');
 			});
 
 		},
